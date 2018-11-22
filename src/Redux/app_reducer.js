@@ -1,6 +1,6 @@
 
 const default_state = {
-  active_menu_item: 'Launch'
+  active_menu_item: 'Setup'
 };
 
 const app_reducer = (

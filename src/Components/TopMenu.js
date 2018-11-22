@@ -4,8 +4,15 @@ import { Menu } from 'semantic-ui-react';
 export const TopMenu = ({ active_menu_item, updateActiveMenuItem }) => {
 
   return (
-    <div style={{position: 'absolute', top: '0', left: '0', zIndex: '1000', width: '100%', borderRadius: '0'}}>
+    <div style={{width: '100%', borderRadius: '0'}}>
       <Menu>
+        <Menu.Item
+          name='Status'
+          active={active_menu_item === 'Status'}
+          onClick={()=> {
+            updateActiveMenuItem('Status');
+          }}
+        />
         <Menu.Item
           name='Launch'
           active={active_menu_item === 'Launch'}
