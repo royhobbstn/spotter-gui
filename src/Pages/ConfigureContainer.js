@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import { Configure } from './Configure.js';
 
@@ -10,4 +9,7 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export const ConfigureContainer = connect(mapStateToProps, mapDispatchToProps)(Configure);
+export const ConfigureContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Configure);

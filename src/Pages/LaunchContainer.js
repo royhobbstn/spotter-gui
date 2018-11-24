@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import { Launch } from './Launch.js';
 
@@ -10,4 +9,7 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export const LaunchContainer = connect(mapStateToProps, mapDispatchToProps)(Launch);
+export const LaunchContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Launch);

@@ -10,14 +10,11 @@ import { Store } from './Redux/combine_reducers';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  Store,
-  composeEnhancer(applyMiddleware(thunk))
-);
+const store = createStore(Store, composeEnhancer(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-      <AppContainer />
+    <AppContainer />
   </Provider>,
   document.getElementById('root')
 );

@@ -1,8 +1,12 @@
-
 import { connect } from 'react-redux';
 import { TopMenu } from './TopMenu.js';
 
-import { actionUpdateActiveMenuItem } from '../Redux/app_actions';
+import {
+  thunkClickSetupPage,
+  thunkClickConfigurePage,
+  thunkClickLaunchPage,
+  thunkClickStatusPage
+} from '../Redux/app_thunks';
 
 const mapStateToProps = state => {
   return {
@@ -12,10 +16,22 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateActiveMenuItem: item => {
-      dispatch(actionUpdateActiveMenuItem(item));
+    clickSetupPage: () => {
+      dispatch(thunkClickSetupPage());
+    },
+    clickConfigurePage: () => {
+      dispatch(thunkClickConfigurePage());
+    },
+    clickLaunchPage: () => {
+      dispatch(thunkClickLaunchPage());
+    },
+    clickStatusPage: () => {
+      dispatch(thunkClickStatusPage());
     }
   };
 };
 
-export const TopMenuContainer = connect(mapStateToProps, mapDispatchToProps)(TopMenu);
+export const TopMenuContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TopMenu);

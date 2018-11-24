@@ -1,4 +1,3 @@
-
 import { connect } from 'react-redux';
 import { App } from './App.js';
 
@@ -12,4 +11,7 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+export const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
