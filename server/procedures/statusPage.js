@@ -1,5 +1,5 @@
 //
 
-exports.statusPage = function() {
+exports.statusPage = async function() {
   return { result: 'okay' };
 };

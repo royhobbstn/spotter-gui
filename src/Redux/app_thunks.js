@@ -24,8 +24,8 @@ export function thunkClickSetupPage() {
     try {
       const response = await window.fetch('/setupPage');
       setup_info = await response.json();
-      if (setup_info.error) {
-        throw setup_info.error;
+      if (response.status !== 200) {
+        throw Error((setup_info && setup_info.error) || 'There was an error calling setupPage');
       }
     } catch (e) {
       // return information or error state
@@ -42,13 +42,15 @@ export function thunkClickConfigurePage() {
   return async (dispatch, getState) => {
     dispatch(resetConfigurePageState());
 
-    let setup_info = {};
+    let configure_info = {};
 
     try {
       const response = await window.fetch('/configurePage');
-      setup_info = await response.json();
-      if (setup_info.error) {
-        throw setup_info.error;
+      configure_info = await response.json();
+      if (response.status !== 200) {
+        throw Error(
+          (configure_info && configure_info.error) || 'There was an error calling configurePage'
+        );
       }
     } catch (e) {
       // return information or error state
@@ -57,7 +59,7 @@ export function thunkClickConfigurePage() {
       return dispatch(setConfigurePageError());
     }
 
-    dispatch(setConfigurePageContent(setup_info));
+    dispatch(setConfigurePageContent(configure_info));
   };
 }
 
@@ -65,13 +67,13 @@ export function thunkClickLaunchPage() {
   return async (dispatch, getState) => {
     dispatch(resetLaunchPageState());
 
-    let setup_info = {};
+    let launch_info = {};
 
     try {
       const response = await window.fetch('/launchPage');
-      setup_info = await response.json();
-      if (setup_info.error) {
-        throw setup_info.error;
+      launch_info = await response.json();
+      if (response.status !== 200) {
+        throw Error((launch_info && launch_info.error) || 'There was an error calling launchPage');
       }
     } catch (e) {
       // return information or error state
@@ -80,7 +82,7 @@ export function thunkClickLaunchPage() {
       return dispatch(setLaunchPageError());
     }
 
-    dispatch(setLaunchPageContent(setup_info));
+    dispatch(setLaunchPageContent(launch_info));
   };
 }
 
@@ -88,13 +90,13 @@ export function thunkClickStatusPage() {
   return async (dispatch, getState) => {
     dispatch(resetStatusPageState());
 
-    let setup_info = {};
+    let status_info = {};
 
     try {
       const response = await window.fetch('/statusPage');
-      setup_info = await response.json();
-      if (setup_info.error) {
-        throw setup_info.error;
+      status_info = await response.json();
+      if (response.status !== 200) {
+        throw Error((status_info && status_info.error) || 'There was an error calling launchPage');
       }
     } catch (e) {
       // return information or error state
@@ -103,6 +105,6 @@ export function thunkClickStatusPage() {
       return dispatch(setStatusPageError());
     }
 
-    dispatch(setStatusPageContent(setup_info));
+    dispatch(setStatusPageContent(status_info));
   };
 }

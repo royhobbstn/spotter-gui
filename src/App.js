@@ -17,7 +17,7 @@ export function App({ active_menu_item }) {
 }
 
 function getPage(active_menu_item) {
-  console.log(active_menu_item);
+  console.log(`Navigating to page: ${active_menu_item}`);
   switch (active_menu_item) {
     case 'Launch':
       return <LaunchContainer />;

@@ -1,5 +1,5 @@
 //
 
-exports.setupPage = function() {
+exports.setupPage = async function() {
   return { result: 'okay' };
 };
