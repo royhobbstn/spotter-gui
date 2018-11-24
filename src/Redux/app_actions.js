@@ -13,10 +13,10 @@ export function setSetupPageError(error) {
   };
 }
 
-export function setSetupPageContent(content) {
+export function setSetupPageContent(response) {
   return {
     type: 'DISPLAY_SETUP_PAGE_CONTENT',
-    content
+    credentials: response.credentials
   };
 }
 
@@ -83,5 +83,45 @@ export function setStatusPageContent(content) {
   return {
     type: 'DISPLAY_STATUS_PAGE_CONTENT',
     content
+  };
+}
+
+// general
+
+export function appLoading() {
+  return {
+    type: 'APP_LOADING'
+  };
+}
+
+export function appError() {
+  return {
+    type: 'APP_ERROR'
+  };
+}
+
+export function loadInstanceList(instances) {
+  return {
+    type: 'UPDATE_INSTANCE_LIST',
+    instances
+  };
+}
+
+export function instanceDataLoading() {
+  return {
+    type: 'INSTANCE_DATA_LOADING'
+  };
+}
+
+export function instanceDataError() {
+  return {
+    type: 'INSTANCE_DATA_ERROR'
+  };
+}
+
+export function loadInstanceData(instance_data) {
+  return {
+    type: 'LOAD_INSTANCE_DATA',
+    instance_data
   };
 }

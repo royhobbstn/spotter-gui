@@ -47,3 +47,6 @@ yarn-error.log*
 
 .idea
 logfile.log
+config.json
+
+instance_list.json

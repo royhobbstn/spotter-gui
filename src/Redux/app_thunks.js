@@ -12,8 +12,34 @@ import {
   setLaunchPageContent,
   resetStatusPageState,
   setStatusPageError,
-  setStatusPageContent
+  setStatusPageContent,
+  instanceDataLoading,
+  instanceDataError,
+  loadInstanceData
 } from './app_actions';
+
+export function thunkGetInstanceData() {
+  return async (dispatch, getState) => {
+    dispatch(instanceDataLoading());
+
+    let instance_data = {};
+
+    try {
+      const response = await window.fetch('/loadInstanceData');
+      instance_data = await response.json();
+
+      if (response.status !== 200) {
+        throw Error('There was an error calling loadInstanceData');
+      }
+    } catch (e) {
+      // return information or error state
+      console.log('Error retrieving instanceData information.');
+      console.log(e);
+      return dispatch(instanceDataError());
+    }
+    dispatch(loadInstanceData(instance_data));
+  };
+}
 
 export function thunkClickSetupPage() {
   return async (dispatch, getState) => {
@@ -33,7 +59,6 @@ export function thunkClickSetupPage() {
       console.log(e);
       return dispatch(setSetupPageError());
     }
-
     dispatch(setSetupPageContent(setup_info));
   };
 }

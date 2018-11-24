@@ -1,14 +1,34 @@
-const logger = require('./modules/logger.js').logger;
+//
 
+const logger = require('./modules/logger.js').logger;
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+
+const { setupPage } = require('./procedures/setupPage');
+const { configurePage } = require('./procedures/configurePage');
+const { launchPage } = require('./procedures/launchPage');
+const { statusPage } = require('./procedures/statusPage');
+const { loadInstanceList, loadInstanceData } = require('./procedures/preLoad');
 
 const PORT = 3001;
 
-const { setupPage } = require('./procedures/setupPage.js');
-const { configurePage } = require('./procedures/configurePage.js');
-const { launchPage } = require('./procedures/launchPage.js');
-const { statusPage } = require('./procedures/statusPage.js');
+app.use(bodyParser.json());
+
+//
+
+app.get('/loadInstanceData', async function(req, res) {
+  let instance_list = [];
+
+  try {
+    instance_list = await loadInstanceData();
+  } catch (e) {
+    logger.error(e);
+    return res.status(500).json({ error: e });
+  }
+
+  return res.json(instance_list);
+});
 
 app.get('/setupPage', async function(req, res) {
   let output = {};

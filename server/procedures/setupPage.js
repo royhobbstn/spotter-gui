@@ -1,5 +1,7 @@
 //
+const AWS = require('aws-sdk');
 
 exports.setupPage = async function() {
-  return { result: 'okay' };
+  const credentials = new AWS.SharedIniFileCredentials(/*{profile: 'myprofile'}*/);
+  return { credentials };
 };

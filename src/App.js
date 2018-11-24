@@ -9,7 +9,7 @@ import { Error } from './Components/Error';
 
 export function App({ active_menu_item }) {
   return (
-    <div>
+    <div style={{ padding: '40px' }}>
       <TopMenuContainer />
       {getPage(active_menu_item)}
     </div>

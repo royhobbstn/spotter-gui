@@ -9,7 +9,7 @@ export const TopMenu = ({
   clickStatusPage
 }) => {
   return (
-    <div style={{ width: '100%', borderRadius: '0' }}>
+    <div style={{ width: '100%', borderRadius: '0', paddingBottom: '20px' }}>
       <Menu>
         <Menu.Item
           name="Status"
