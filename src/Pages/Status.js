@@ -11,7 +11,6 @@ const cell_style = {
 };
 
 export const Status = ({ instance_data }) => {
-  console.log(instance_data);
   if (
     !(
       instance_data.Reservations &&
@@ -34,8 +33,8 @@ export const Status = ({ instance_data }) => {
       <tbody>
         {instance_data.Reservations[0].Instances.map(instance => {
           return (
-            <tr key={instance.ImageId}>
-              <td style={cell_style}>{instance.ImageId}</td>
+            <tr key={instance.InstanceId}>
+              <td style={cell_style}>{instance.InstanceId}</td>
               <td style={cell_style}>{instance.InstanceType}</td>
             </tr>
           );

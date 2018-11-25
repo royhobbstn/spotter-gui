@@ -3,16 +3,13 @@
 import {
   resetSetupPageState,
   setSetupPageError,
-  setSetupPageContent,
+  updateAvailableProfiles,
   resetConfigurePageState,
   setConfigurePageError,
   setConfigurePageContent,
   resetLaunchPageState,
   setLaunchPageError,
   setLaunchPageContent,
-  resetStatusPageState,
-  setStatusPageError,
-  setStatusPageContent,
   instanceDataLoading,
   instanceDataError,
   loadInstanceData
@@ -45,13 +42,13 @@ export function thunkClickSetupPage() {
   return async (dispatch, getState) => {
     dispatch(resetSetupPageState());
 
-    let setup_info = {};
+    let available_profiles = {};
 
     try {
       const response = await window.fetch('/setupPage');
-      setup_info = await response.json();
+      available_profiles = await response.json();
       if (response.status !== 200) {
-        throw Error((setup_info && setup_info.error) || 'There was an error calling setupPage');
+        throw Error('There was an error calling setupPage');
       }
     } catch (e) {
       // return information or error state
@@ -59,7 +56,8 @@ export function thunkClickSetupPage() {
       console.log(e);
       return dispatch(setSetupPageError());
     }
-    dispatch(setSetupPageContent(setup_info));
+    const [profiles, selected_profiles] = available_profiles;
+    dispatch(updateAvailableProfiles(profiles, selected_profiles));
   };
 }
 
@@ -108,28 +106,5 @@ export function thunkClickLaunchPage() {
     }
 
     dispatch(setLaunchPageContent(launch_info));
-  };
-}
-
-export function thunkClickStatusPage() {
-  return async (dispatch, getState) => {
-    dispatch(resetStatusPageState());
-
-    let status_info = {};
-
-    try {
-      const response = await window.fetch('/statusPage');
-      status_info = await response.json();
-      if (response.status !== 200) {
-        throw Error((status_info && status_info.error) || 'There was an error calling launchPage');
-      }
-    } catch (e) {
-      // return information or error state
-      console.log('Error retrieving statusPage information.');
-      console.log(e);
-      return dispatch(setStatusPageError());
-    }
-
-    dispatch(setStatusPageContent(status_info));
   };
 }

@@ -9,7 +9,7 @@ const { setupPage } = require('./procedures/setupPage');
 const { configurePage } = require('./procedures/configurePage');
 const { launchPage } = require('./procedures/launchPage');
 const { statusPage } = require('./procedures/statusPage');
-const { loadInstanceList, loadInstanceData } = require('./procedures/preLoad');
+const { loadInstanceData } = require('./procedures/preLoad');
 
 const PORT = 3001;
 
@@ -18,16 +18,16 @@ app.use(bodyParser.json());
 //
 
 app.get('/loadInstanceData', async function(req, res) {
-  let instance_list = [];
+  let instance_data = {};
 
   try {
-    instance_list = await loadInstanceData();
+    instance_data = await loadInstanceData();
   } catch (e) {
     logger.error(e);
     return res.status(500).json({ error: e });
   }
 
-  return res.json(instance_list);
+  return res.json(instance_data);
 });
 
 app.get('/setupPage', async function(req, res) {

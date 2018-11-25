@@ -13,10 +13,11 @@ export function setSetupPageError(error) {
   };
 }
 
-export function setSetupPageContent(response) {
+export function updateAvailableProfiles(profiles, selected_profiles) {
   return {
-    type: 'DISPLAY_SETUP_PAGE_CONTENT',
-    credentials: response.credentials
+    type: 'UPDATE_AVAILABLE_CREDENTIAL_PROFILES',
+    profiles,
+    selected_profiles
   };
 }
 
@@ -64,48 +65,7 @@ export function setLaunchPageContent(content) {
   };
 }
 
-// statusPage
-
-export function resetStatusPageState() {
-  return {
-    type: 'RESET_STATUS_PAGE'
-  };
-}
-
-export function setStatusPageError(error) {
-  return {
-    type: 'DISPLAY_STATUS_PAGE_ERROR',
-    error
-  };
-}
-
-export function setStatusPageContent(content) {
-  return {
-    type: 'DISPLAY_STATUS_PAGE_CONTENT',
-    content
-  };
-}
-
-// general
-
-export function appLoading() {
-  return {
-    type: 'APP_LOADING'
-  };
-}
-
-export function appError() {
-  return {
-    type: 'APP_ERROR'
-  };
-}
-
-export function loadInstanceList(instances) {
-  return {
-    type: 'UPDATE_INSTANCE_LIST',
-    instances
-  };
-}
+// status
 
 export function instanceDataLoading() {
   return {

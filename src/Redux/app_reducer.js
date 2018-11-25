@@ -1,15 +1,23 @@
 //
 
 const default_state = {
+  // global
   active_menu_item: 'Status',
+
+  // setup
+  selected_profiles: {}, // load from JSON
+  all_profiles: {}, // load from JSON
   setup_page_status: '', // loading, content, error
-  setup_page_credentials: {},
+
+  // configure
   configure_page_status: '',
   configure_page_content: '',
+
+  // launch
   launch_page_status: '',
   launch_page_content: '',
-  status_page_status: '',
-  status_page_content: '',
+
+  // status
   instance_data: {},
   instance_data_loading: false,
   instance_data_error: false
@@ -17,35 +25,48 @@ const default_state = {
 
 const app_reducer = (state = default_state, action) => {
   switch (action.type) {
+    // Status
+
     case 'INSTANCE_DATA_LOADING':
-      return Object.assign({}, state, { instance_data_loading: true, instance_data_error: false });
+      return Object.assign({}, state, {
+        active_menu_item: 'Status',
+        instance_data_loading: true,
+        instance_data_error: false
+      });
     case 'INSTANCE_DATA_ERROR':
-      return Object.assign({}, state, { instance_data_loading: false, instance_data_error: true });
+      return Object.assign({}, state, {
+        active_menu_item: 'Status',
+        instance_data_loading: false,
+        instance_data_error: true
+      });
     case 'LOAD_INSTANCE_DATA':
       return Object.assign({}, state, {
+        active_menu_item: 'Status',
         instance_data_loading: false,
         instance_data_error: false,
         instance_data: action.instance_data
       });
 
-    //
+    // Setup
+
     case 'RESET_SETUP_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Setup',
-        setup_page_status: 'loading',
-        setup_page_credentials: {}
+        setup_page_status: 'loading'
       });
     case 'DISPLAY_SETUP_PAGE_ERROR':
       return Object.assign({}, state, {
-        setup_page_status: 'error',
-        setup_page_credentials: {}
+        setup_page_status: 'error'
       });
-    case 'DISPLAY_SETUP_PAGE_CONTENT':
+    case 'UPDATE_AVAILABLE_CREDENTIAL_PROFILES':
       return Object.assign({}, state, {
         setup_page_status: 'content',
-        setup_page_credentials: action.credentials
+        all_profiles: action.profiles,
+        selected_profiles: action.selected_profiles
       });
-    //
+
+    // Configure
+
     case 'RESET_CONFIGURE_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Configure',
@@ -62,7 +83,9 @@ const app_reducer = (state = default_state, action) => {
         configure_page_status: 'content',
         configure_page_content: action.content
       });
-    //
+
+    // Launch
+
     case 'RESET_LAUNCH_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Launch',
@@ -79,23 +102,7 @@ const app_reducer = (state = default_state, action) => {
         launch_page_status: 'content',
         launch_page_content: action.content
       });
-    //
-    case 'RESET_STATUS_PAGE':
-      return Object.assign({}, state, {
-        active_menu_item: 'Status',
-        status_page_status: 'loading',
-        status_page_content: 'Loading'
-      });
-    case 'DISPLAY_STATUS_PAGE_ERROR':
-      return Object.assign({}, state, {
-        status_page_status: 'error',
-        status_page_content: action.error
-      });
-    case 'DISPLAY_STATUS_PAGE_CONTENT':
-      return Object.assign({}, state, {
-        status_page_status: 'content',
-        status_page_content: action.content
-      });
+
     default:
       return state;
   }

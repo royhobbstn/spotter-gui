@@ -5,7 +5,7 @@ import {
   thunkClickSetupPage,
   thunkClickConfigurePage,
   thunkClickLaunchPage,
-  thunkClickStatusPage
+  thunkGetInstanceData
 } from '../Redux/app_thunks';
 
 const mapStateToProps = state => {
@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(thunkClickLaunchPage());
     },
     clickStatusPage: () => {
-      dispatch(thunkClickStatusPage());
+      dispatch(thunkGetInstanceData());
     }
   };
 };
