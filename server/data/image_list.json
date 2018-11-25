@@ -1,0 +1,17 @@
+{
+  "Ubuntu-18.04": {
+    "aws": "ami-0bbe6b35405ecebdb",
+    "google": "",
+    "microsoft": ""
+  },
+  "Ubuntu-16.04": {
+    "aws": "ami-0e32ec5bc225539f5",
+    "google": "",
+    "microsoft": ""
+  },
+  "Core-OS-1911.3.0" : {
+    "aws": "ami-0aee4947be233f88c",
+    "google": "",
+    "microsoft": ""
+  }
+}

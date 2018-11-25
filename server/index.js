@@ -8,7 +8,6 @@ const bodyParser = require('body-parser');
 const { setupPage } = require('./procedures/setupPage');
 const { configurePage } = require('./procedures/configurePage');
 const { launchPage } = require('./procedures/launchPage');
-const { statusPage } = require('./procedures/statusPage');
 const { loadInstanceData } = require('./procedures/preLoad');
 
 const PORT = 3001;
@@ -61,19 +60,6 @@ app.get('/launchPage', async function(req, res) {
 
   try {
     output = await launchPage();
-  } catch (e) {
-    logger.error(e);
-    return res.status(500).json({ error: e.stack });
-  }
-
-  return res.json(output);
-});
-
-app.get('/statusPage', async function(req, res) {
-  let output = {};
-
-  try {
-    output = await statusPage();
   } catch (e) {
     logger.error(e);
     return res.status(500).json({ error: e.stack });

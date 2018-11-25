@@ -36,14 +36,22 @@ export function setConfigurePageError(error) {
   };
 }
 
-export function setConfigurePageContent(content) {
+export function loadProfileData(saved_profiles, image_list) {
   return {
-    type: 'DISPLAY_CONFIGURE_PAGE_CONTENT',
-    content
+    type: 'LOAD_PROFILE_DATA',
+    saved_profiles,
+    image_list
   };
 }
 
 // launchPage
+
+export function actionToggleServiceCheckbox(service) {
+  return {
+    type: 'TOGGLE_SERVICE_CHECKBOX',
+    service
+  };
+}
 
 export function resetLaunchPageState() {
   return {

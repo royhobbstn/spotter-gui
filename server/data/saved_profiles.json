@@ -1,0 +1,14 @@
+{
+  "profiles": [
+    {
+      "profileLabel": "main",
+      "imageName": "ubuntu-18.04",
+      "minCpu": 1,
+      "minRam": 1,
+      "minGpu": 0,
+      "type": "git",
+      "location": "https://github.com/Marhill-Labs/ec2-train-model.git",
+      "copyLocalFiles": []
+    }
+  ]
+}

@@ -2,18 +2,21 @@
 
 const default_state = {
   // global
-  active_menu_item: 'Status',
-
-  // setup
+  active_menu_item: 'Configure', // Status, Launch, Configure, Setup
+  saved_profiles: {}, // load from JSON
+  image_list: {}, // load from JSON
   selected_profiles: {}, // load from JSON
   all_profiles: {}, // load from JSON
+
+  // setup
   setup_page_status: '', // loading, content, error
 
   // configure
   configure_page_status: '',
-  configure_page_content: '',
 
   // launch
+  launch_selected_services: [],
+  available_services: ['aws', 'microsoft', 'google'], // should probably be somewhere else
   launch_page_status: '',
   launch_page_content: '',
 
@@ -78,13 +81,26 @@ const app_reducer = (state = default_state, action) => {
         configure_page_status: 'error',
         configure_page_content: action.error
       });
-    case 'DISPLAY_CONFIGURE_PAGE_CONTENT':
+    case 'LOAD_PROFILE_DATA':
       return Object.assign({}, state, {
         configure_page_status: 'content',
-        configure_page_content: action.content
+        saved_profiles: action.saved_profiles,
+        image_list: action.image_list
       });
 
     // Launch
+
+    case 'TOGGLE_SERVICE_CHECKBOX':
+      let updated_services = [];
+      if (state.launch_selected_services.includes(action.service)) {
+        updated_services = state.launch_selected_services.filter(s => s !== action.service);
+      } else {
+        updated_services = [...state.launch_selected_services, action.service];
+      }
+
+      return Object.assign({}, state, {
+        launch_selected_services: updated_services
+      });
 
     case 'RESET_LAUNCH_PAGE':
       return Object.assign({}, state, {

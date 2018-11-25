@@ -6,7 +6,7 @@ import {
   updateAvailableProfiles,
   resetConfigurePageState,
   setConfigurePageError,
-  setConfigurePageContent,
+  loadProfileData,
   resetLaunchPageState,
   setLaunchPageError,
   setLaunchPageContent,
@@ -65,15 +65,16 @@ export function thunkClickConfigurePage() {
   return async (dispatch, getState) => {
     dispatch(resetConfigurePageState());
 
-    let configure_info = {};
+    let saved_profiles = {};
+    let image_list = {};
 
     try {
       const response = await window.fetch('/configurePage');
-      configure_info = await response.json();
+      const parsed_response = await response.json();
+      [saved_profiles, image_list] = parsed_response.data;
+
       if (response.status !== 200) {
-        throw Error(
-          (configure_info && configure_info.error) || 'There was an error calling configurePage'
-        );
+        throw Error('There was an error calling configurePage');
       }
     } catch (e) {
       // return information or error state
@@ -82,7 +83,7 @@ export function thunkClickConfigurePage() {
       return dispatch(setConfigurePageError());
     }
 
-    dispatch(setConfigurePageContent(configure_info));
+    dispatch(loadProfileData(saved_profiles, image_list));
   };
 }
 
