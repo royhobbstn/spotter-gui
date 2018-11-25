@@ -1,13 +1,21 @@
 import React from 'react';
-import { Icon, Checkbox, Button } from 'semantic-ui-react';
+import { Icon, Checkbox, Button, Dropdown } from 'semantic-ui-react';
 
 export const Launch = ({
   available_services,
   launch_selected_services,
   toggleServiceCheckbox,
-  saved_profiles
+  saved_profiles,
+  selected_launch_profile,
+  clickLaunchButton,
+  changeSelectedLaunchProfile
 }) => {
   const profiles = saved_profiles.profiles || [];
+
+  const options = profiles.map(p => {
+    return { text: p.profileLabel, value: p.profileLabel };
+  });
+  options.unshift({ text: 'None', value: 'None' });
 
   return (
     <div style={{ margin: 'auto' }}>
@@ -40,18 +48,22 @@ export const Launch = ({
         );
       })}
       <br />
-      <p>Select a Launch Profile:</p>
-
-      {profiles.map(p => {
-        return (
-          <div
-            style={{ height: '40px', width: '80px', display: 'inline-block' }}
-            key={p.profileLabel}
-          />
-        );
-      })}
       <br />
-      <Button primary>Launch</Button>
+      <p>Select a Launch Profile:</p>
+      <Dropdown
+        defaultValue={selected_launch_profile}
+        selection
+        options={options}
+        onChange={(evt, data) => {
+          changeSelectedLaunchProfile(data.value);
+        }}
+      />
+      <br />
+      <br />
+      <br />
+      <Button primary onClick={clickLaunchButton}>
+        Launch
+      </Button>
     </div>
   );
 };

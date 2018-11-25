@@ -46,6 +46,13 @@ export function loadProfileData(saved_profiles, image_list) {
 
 // launchPage
 
+export function actionUpdateSelectedLaunchProfile(profile) {
+  return {
+    type: 'UPDATE_SELECTED_LAUNCH_PROFILE',
+    profile
+  };
+}
+
 export function actionToggleServiceCheckbox(service) {
   return {
     type: 'TOGGLE_SERVICE_CHECKBOX',

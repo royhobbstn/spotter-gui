@@ -16,6 +16,7 @@ const default_state = {
 
   // launch
   launch_selected_services: [],
+  selected_launch_profile: 'None',
   available_services: ['aws', 'microsoft', 'google'], // should probably be somewhere else
   launch_page_status: '',
   launch_page_content: '',
@@ -89,6 +90,9 @@ const app_reducer = (state = default_state, action) => {
       });
 
     // Launch
+
+    case 'UPDATE_SELECTED_LAUNCH_PROFILE':
+      return Object.assign({}, state, { selected_launch_profile: action.profile });
 
     case 'TOGGLE_SERVICE_CHECKBOX':
       let updated_services = [];
