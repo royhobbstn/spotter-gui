@@ -44,6 +44,25 @@ export function loadProfileData(saved_profiles, image_list) {
   };
 }
 
+export function actionDeleteProfileInProgress() {
+  return {
+    type: 'DELETE_PROFILE_IN_PROGRESS'
+  };
+}
+
+export function actionSetProfileDeleteErrorMessage() {
+  return {
+    type: 'SET_DELETE_ERROR_MESSAGE' // TODO (not implemented)
+  };
+}
+
+export function actionDeleteProfile(profile) {
+  return {
+    type: 'DELETE_PROFILE', // TODO (not implemented)
+    profile
+  };
+}
+
 // launchPage
 
 export function actionUpdateSelectedLaunchProfile(profile) {

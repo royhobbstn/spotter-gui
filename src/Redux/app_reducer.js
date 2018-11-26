@@ -13,6 +13,7 @@ const default_state = {
 
   // configure
   configure_page_status: '',
+  delete_profile_in_progress: false,
 
   // launch
   launch_selected_services: [],
@@ -88,6 +89,8 @@ const app_reducer = (state = default_state, action) => {
         saved_profiles: action.saved_profiles,
         image_list: action.image_list
       });
+    case 'DELETE_PROFILE_IN_PROGRESS':
+      return Object.assign({}, state, { delete_profile_in_progress: true });
 
     // Launch
 

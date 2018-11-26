@@ -1,13 +1,27 @@
 import React from 'react';
-import { Dropdown } from 'semantic-ui-react';
+import { Icon, Button, Popup } from 'semantic-ui-react';
 
-export const Configure = ({ image_list, saved_profiles }) => {
+export const Configure = ({
+  image_list,
+  saved_profiles,
+  deleteProfile,
+  addProfile,
+  cancelProfile,
+  saveProfile,
+  delete_profile_in_progress
+}) => {
   const profiles = saved_profiles.profiles || [];
   return (
     <div>
+      {delete_profile_in_progress ? (
+        <div style={{ color: 'red' }}>DELETING PROFILE INFORMATION</div>
+      ) : (
+        <span />
+      )}
       <table>
         <thead>
           <tr>
+            <th />
             <th>Name</th>
             <th>Image</th>
             <th>MinCpu</th>
@@ -22,6 +36,21 @@ export const Configure = ({ image_list, saved_profiles }) => {
           {profiles.map(p => {
             return (
               <tr key={p.profileLabel}>
+                <td>
+                  <Popup
+                    trigger={
+                      <Button
+                        icon
+                        onClick={() => {
+                          deleteProfile(p.profileLabel);
+                        }}
+                      >
+                        <Icon name="minus circle" color="red" size="large" />
+                      </Button>
+                    }
+                    content="Delete Profile"
+                  />
+                </td>
                 <td>{p.profileLabel}</td>
                 <td>{p.imageName}</td>
                 <td>{p.minCpu}</td>
@@ -35,8 +64,11 @@ export const Configure = ({ image_list, saved_profiles }) => {
           })}
         </tbody>
       </table>
-      {/*<button>New Profile</button>*/}
-      {/*<Dropdown key={key} defaultValue={selected_profiles[key]} selection options={image_list} />*/}
+      <br />
+      <br />
+      <Button icon>
+        <Icon name="plus circle" color="green" size="large" />
+      </Button>
     </div>
   );
 };
