@@ -3,7 +3,8 @@ import { App } from './App.js';
 
 const mapStateToProps = state => {
   return {
-    active_menu_item: state.app_reducer.active_menu_item
+    active_menu_item: state.app_reducer.active_menu_item,
+    app_loading: state.app_reducer.app_loading
   };
 };
 

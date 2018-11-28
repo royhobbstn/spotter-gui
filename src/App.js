@@ -7,11 +7,17 @@ import { StatusContainer } from './Pages/StatusContainer';
 
 import { Error } from './Components/Error';
 
-export function App({ active_menu_item }) {
+export function App({ active_menu_item, app_loading }) {
   return (
     <div style={{ padding: '40px' }}>
-      <TopMenuContainer />
-      {getPage(active_menu_item)}
+      {app_loading ? (
+        <div>Loading Application</div>
+      ) : (
+        <React.Fragment>
+          <TopMenuContainer />
+          {getPage(active_menu_item)}
+        </React.Fragment>
+      )}
     </div>
   );
 }

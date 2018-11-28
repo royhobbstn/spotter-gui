@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import { Configure } from './Configure.js';
 
 import { thunkDeleteProfile } from '../Redux/app_thunks';
-import { actionShowAddProfileDialog, actionCancelConfigureForm } from '../Redux/app_actions';
+import {
+  actionShowAddProfileDialog,
+  actionCancelConfigureForm
+} from '../Redux/Configure/configure_actions';
 
 const mapStateToProps = state => {
   return {

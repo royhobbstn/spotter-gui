@@ -83,17 +83,21 @@ export const Configure = ({
       <Divider />
       {show_add_profile_dialog ? (
         <Form>
-          <Grid columns={2} divided>
+          <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
                 <Form.Input label="Profile Name" required />
               </Grid.Column>
               <Grid.Column>
-                <Form.Select label="AMI Image" options={image_options} />
+                <Form.Select
+                  label="AMI Image"
+                  options={image_options}
+                  defaultValue={image_options[0].value}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Grid columns={3} divided>
+          <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
                 <Form.Input label="MinCPU" />
@@ -106,10 +110,14 @@ export const Configure = ({
               </Grid.Column>
             </Grid.Row>
           </Grid>
-          <Grid columns={2} divided>
+          <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
-                <Form.Select label="Type" options={type_options} />
+                <Form.Select
+                  label="Type"
+                  options={type_options}
+                  defaultValue={type_options[0].value}
+                />
               </Grid.Column>
               <Grid.Column>
                 <Form.Input label="Location" required />

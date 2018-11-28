@@ -2,7 +2,8 @@
 
 const default_state = {
   // global
-  active_menu_item: 'Configure', // Status, Launch, Configure, Setup
+  app_loading: true,
+  active_menu_item: 'Status', // Status, Launch, Configure, Setup
   saved_profiles: {}, // load from JSON
   image_list: {}, // load from JSON
   selected_profiles: {}, // load from JSON
@@ -50,7 +51,8 @@ const app_reducer = (state = default_state, action) => {
         active_menu_item: 'Status',
         instance_data_loading: false,
         instance_data_error: false,
-        instance_data: action.instance_data
+        instance_data: action.instance_data,
+        app_loading: false
       });
 
     // Setup

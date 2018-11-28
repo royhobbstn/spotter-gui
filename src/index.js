@@ -21,4 +21,4 @@ ReactDOM.render(
 );
 
 // initialize data
-// store.dispatch(thunkGetInstanceData());
+store.dispatch(thunkGetInstanceData());

@@ -1,26 +1,34 @@
 //
-
 import {
-  resetSetupPageState,
-  setSetupPageError,
-  updateAvailableProfiles,
-  resetConfigurePageState,
-  setConfigurePageError,
-  loadProfileData,
-  resetLaunchPageState,
-  setLaunchPageError,
-  setLaunchPageContent,
-  instanceDataLoading,
-  instanceDataError,
-  loadInstanceData,
+  actionResetConfigurePageState,
+  actionSetConfigurePageError,
+  actionLoadProfileData,
   actionDeleteProfileInProgress,
   actionSetProfileDeleteErrorMessage,
   actionDeleteProfile
-} from './app_actions';
+} from './Configure/configure_actions';
+
+import {
+  actionInstanceDataLoading,
+  actionInstanceDataError,
+  actionloadInstanceData
+} from './Status/status_actions';
+
+import {
+  actionResetSetupPageState,
+  actionSetupPageError,
+  actionUpdateAvailableProfiles
+} from './Setup/setup_actions';
+
+import {
+  actionResetLaunchPageState,
+  actionSetLaunchPageError,
+  actionSetLaunchPageContent
+} from './Launch/launch_actions';
 
 export function thunkGetInstanceData() {
   return async (dispatch, getState) => {
-    dispatch(instanceDataLoading());
+    dispatch(actionInstanceDataLoading());
 
     let instance_data = {};
 
@@ -35,15 +43,15 @@ export function thunkGetInstanceData() {
       // return information or error state
       console.log('Error retrieving instanceData information.');
       console.log(e);
-      return dispatch(instanceDataError());
+      return dispatch(actionInstanceDataError());
     }
-    dispatch(loadInstanceData(instance_data));
+    dispatch(actionloadInstanceData(instance_data));
   };
 }
 
 export function thunkClickSetupPage() {
   return async (dispatch, getState) => {
-    dispatch(resetSetupPageState());
+    dispatch(actionResetSetupPageState());
 
     let available_profiles = {};
 
@@ -57,16 +65,16 @@ export function thunkClickSetupPage() {
       // return information or error state
       console.log('Error retrieving setupPage information.');
       console.log(e);
-      return dispatch(setSetupPageError());
+      return dispatch(actionSetupPageError());
     }
     const [profiles, selected_profiles] = available_profiles;
-    dispatch(updateAvailableProfiles(profiles, selected_profiles));
+    dispatch(actionUpdateAvailableProfiles(profiles, selected_profiles));
   };
 }
 
 export function thunkClickConfigurePage() {
   return async (dispatch, getState) => {
-    dispatch(resetConfigurePageState());
+    dispatch(actionResetConfigurePageState());
 
     let saved_profiles = {};
     let image_list = {};
@@ -83,16 +91,16 @@ export function thunkClickConfigurePage() {
       // return information or error state
       console.log('Error retrieving configurePage information.');
       console.log(e);
-      return dispatch(setConfigurePageError());
+      return dispatch(actionSetConfigurePageError());
     }
 
-    dispatch(loadProfileData(saved_profiles, image_list));
+    dispatch(actionLoadProfileData(saved_profiles, image_list));
   };
 }
 
 export function thunkClickLaunchPage() {
   return async (dispatch, getState) => {
-    dispatch(resetLaunchPageState());
+    dispatch(actionResetLaunchPageState());
 
     let launch_info = {};
 
@@ -106,10 +114,10 @@ export function thunkClickLaunchPage() {
       // return information or error state
       console.log('Error retrieving launchPage information.');
       console.log(e);
-      return dispatch(setLaunchPageError());
+      return dispatch(actionSetLaunchPageError());
     }
 
-    dispatch(setLaunchPageContent(launch_info));
+    dispatch(actionSetLaunchPageContent(launch_info));
   };
 }
 

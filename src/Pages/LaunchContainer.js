@@ -6,7 +6,7 @@ import { Launch } from './Launch.js';
 import {
   actionToggleServiceCheckbox,
   actionUpdateSelectedLaunchProfile
-} from '../Redux/app_actions';
+} from '../Redux/Launch/launch_actions';
 
 const mapStateToProps = state => {
   return {
