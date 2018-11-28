@@ -14,6 +14,7 @@ const default_state = {
   // configure
   configure_page_status: '',
   delete_profile_in_progress: false,
+  show_add_profile_dialog: true,
 
   // launch
   launch_selected_services: [],
@@ -72,6 +73,11 @@ const app_reducer = (state = default_state, action) => {
 
     // Configure
 
+    case 'CANCEL_CONFIGURE_FORM':
+      return Object.assign({}, state, {
+        show_add_profile_dialog: false
+      });
+
     case 'RESET_CONFIGURE_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Configure',
@@ -91,6 +97,8 @@ const app_reducer = (state = default_state, action) => {
       });
     case 'DELETE_PROFILE_IN_PROGRESS':
       return Object.assign({}, state, { delete_profile_in_progress: true });
+    case 'SHOW_ADD_PROFILE_DIALOG':
+      return Object.assign({}, state, { show_add_profile_dialog: true });
 
     // Launch
 

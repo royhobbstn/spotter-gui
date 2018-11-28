@@ -63,6 +63,18 @@ export function actionDeleteProfile(profile) {
   };
 }
 
+export function actionShowAddProfileDialog() {
+  return {
+    type: 'SHOW_ADD_PROFILE_DIALOG'
+  };
+}
+
+export function actionCancelConfigureForm() {
+  return {
+    type: 'CANCEL_CONFIGURE_FORM'
+  };
+}
+
 // launchPage
 
 export function actionUpdateSelectedLaunchProfile(profile) {
