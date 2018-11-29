@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Configure } from './Configure.js';
 
-import { thunkDeleteProfile } from '../Redux/app_thunks';
+import { thunkDeleteProfile } from '../Redux/Configure/configure_thunks';
 import {
   actionShowAddProfileDialog,
   actionCancelConfigureForm

@@ -1,12 +1,10 @@
 import { connect } from 'react-redux';
 import { TopMenu } from './TopMenu.js';
 
-import {
-  thunkClickSetupPage,
-  thunkClickConfigurePage,
-  thunkClickLaunchPage,
-  thunkGetInstanceData
-} from '../Redux/app_thunks';
+import { thunkGetInstanceData } from '../Redux/Status/status_thunks';
+import { thunkClickConfigurePage } from '../Redux/Configure/configure_thunks';
+import { thunkClickLaunchPage } from '../Redux/Launch/launch_thunks';
+import { thunkClickSetupPage } from '../Redux/Setup/setup_thunks';
 
 const mapStateToProps = state => {
   return {
