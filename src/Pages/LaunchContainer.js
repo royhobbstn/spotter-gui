@@ -10,10 +10,10 @@ import {
 
 const mapStateToProps = state => {
   return {
-    available_services: state.app_reducer.available_services,
-    launch_selected_services: state.app_reducer.launch_selected_services,
-    saved_profiles: state.app_reducer.saved_profiles,
-    selected_launch_profile: state.app_reducer.selected_launch_profile
+    available_services: state.launch_reducer.available_services,
+    launch_selected_services: state.launch_reducer.launch_selected_services,
+    saved_profiles: state.initial_reducer.saved_profiles,
+    selected_launch_profile: state.launch_reducer.selected_launch_profile
   };
 };
 

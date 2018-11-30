@@ -8,7 +8,7 @@ import { thunkClickSetupPage } from '../Redux/Setup/setup_thunks';
 
 const mapStateToProps = state => {
   return {
-    active_menu_item: state.app_reducer.active_menu_item
+    active_menu_item: state.initial_reducer.active_menu_item
   };
 };
 

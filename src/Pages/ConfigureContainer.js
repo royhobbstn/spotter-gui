@@ -9,10 +9,10 @@ import {
 
 const mapStateToProps = state => {
   return {
-    image_list: state.app_reducer.image_list,
-    saved_profiles: state.app_reducer.saved_profiles,
-    delete_profile_in_progress: state.app_reducer.delete_profile_in_progress,
-    show_add_profile_dialog: state.app_reducer.show_add_profile_dialog
+    image_list: state.initial_reducer.image_list,
+    saved_profiles: state.initial_reducer.saved_profiles,
+    delete_profile_in_progress: state.configure_reducer.delete_profile_in_progress,
+    show_add_profile_dialog: state.configure_reducer.show_add_profile_dialog
   };
 };
 
