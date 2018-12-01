@@ -11,7 +11,22 @@ export const Configure = ({
   delete_profile_in_progress,
   show_add_profile_dialog,
   showAddProfileDialog,
-  cancelForm
+  addF1FormProfile,
+  cancelF1Form,
+  changeF1ProfileName,
+  changeF1AMIImage,
+  changeF1MinCpu,
+  changeF1MinRAM,
+  changeF1MinGPU,
+  changeF1ProfileType,
+  changeF1ProfileLocation,
+  f1_profile_name,
+  f1_ami_image,
+  f1_min_cpu,
+  f1_min_ram,
+  f1_min_gpu,
+  f1_profile_type,
+  f1_profile_location
 }) => {
   const profiles = saved_profiles.profiles || [];
 
@@ -82,17 +97,22 @@ export const Configure = ({
       <br />
       <Divider />
       {show_add_profile_dialog ? (
-        <Form>
+        <Form name="f1">
           <Grid columns={2}>
             <Grid.Row>
               <Grid.Column>
-                <Form.Input label="Profile Name" required />
+                <Form.Input
+                  label="Profile Name"
+                  onChange={changeF1ProfileName}
+                  value={f1_profile_name}
+                />
               </Grid.Column>
               <Grid.Column>
                 <Form.Select
                   label="AMI Image"
                   options={image_options}
-                  defaultValue={image_options[0].value}
+                  onChange={changeF1AMIImage}
+                  value={f1_ami_image}
                 />
               </Grid.Column>
             </Grid.Row>
@@ -100,13 +120,13 @@ export const Configure = ({
           <Grid columns={3}>
             <Grid.Row>
               <Grid.Column>
-                <Form.Input label="MinCPU" />
+                <Form.Input label="MinCPU" onChange={changeF1MinCpu} value={f1_min_cpu} />
               </Grid.Column>
               <Grid.Column>
-                <Form.Input label="MinRAM" />
+                <Form.Input label="MinRAM" onChange={changeF1MinRAM} value={f1_min_ram} />
               </Grid.Column>
               <Grid.Column>
-                <Form.Input label="MinGPU" />
+                <Form.Input label="MinGPU" onChange={changeF1MinGPU} value={f1_min_gpu} />
               </Grid.Column>
             </Grid.Row>
           </Grid>
@@ -116,19 +136,24 @@ export const Configure = ({
                 <Form.Select
                   label="Type"
                   options={type_options}
-                  defaultValue={type_options[0].value}
+                  onChange={changeF1ProfileType}
+                  value={f1_profile_type}
                 />
               </Grid.Column>
               <Grid.Column>
-                <Form.Input label="Location" required />
+                <Form.Input
+                  label="Location"
+                  onChange={changeF1ProfileLocation}
+                  value={f1_profile_location}
+                />
               </Grid.Column>
             </Grid.Row>
           </Grid>
           <Divider />
-          <Button type="submit">Add Profile</Button>
-          <Button type="reset" onClick={cancelForm}>
-            Cancel
+          <Button type="submit" onClick={addF1FormProfile}>
+            Add Profile
           </Button>
+          <Button onClick={cancelF1Form}>Cancel</Button>
         </Form>
       ) : (
         <Popup

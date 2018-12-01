@@ -1,20 +1,7 @@
-export function actionResetSetupPageState() {
-  return {
-    type: 'RESET_SETUP_PAGE'
-  };
-}
+// nothing yet
 
-export function actionSetupPageError(error) {
+export function actionClickSetupPage() {
   return {
-    type: 'DISPLAY_SETUP_PAGE_ERROR',
-    error
-  };
-}
-
-export function actionUpdateAvailableProfiles(profiles, selected_profiles) {
-  return {
-    type: 'UPDATE_AVAILABLE_CREDENTIAL_PROFILES',
-    profiles,
-    selected_profiles
+    type: 'CHANGE_PAGE_TO_SETUP'
   };
 }

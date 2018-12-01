@@ -1,14 +1,1 @@
-{
-  "profiles": [
-    {
-      "profileLabel": "main",
-      "imageName": "ubuntu-18.04",
-      "minCpu": 1,
-      "minRam": 1,
-      "minGpu": 0,
-      "type": "git",
-      "location": "https://github.com/Marhill-Labs/ec2-train-model.git",
-      "copyLocalFiles": []
-    }
-  ]
-}
+{"profiles":[{"profileLabel":"main","imageName":"ubuntu-18.04","minCpu":1,"minRam":1,"minGpu":0,"type":"git","location":"https://github.com/Marhill-Labs/ec2-train-model.git","copyLocalFiles":[]},{"profileLabel":"a","imageName":"Ubuntu-16.04","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"b","copyLocalFiles":[]},{"profileLabel":"c","imageName":"Ubuntu-18.04","minCpu":0,"minRam":0,"minGpu":0,"type":"docker","location":"d","copyLocalFiles":[]},{"profileLabel":"e","imageName":"Ubuntu-16.04","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"f","copyLocalFiles":[]},{"profileLabel":"g","imageName":"Ubuntu-16.04","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"h","copyLocalFiles":[]},{"profileLabel":"i","imageName":"Ubuntu-16.04","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"j","copyLocalFiles":[]},{"profileLabel":"k","imageName":"Ubuntu-16.04","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"l","copyLocalFiles":[]}]}

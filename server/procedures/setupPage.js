@@ -1,8 +1,6 @@
 //
 const fs = require('fs').promises;
 const logger = require('../modules/logger.js').logger;
-// const AWS = require('aws-sdk');
-// AWS.config.loadFromPath('./server/data/config.json');
 
 exports.setupPage = async function() {
   let config = {};

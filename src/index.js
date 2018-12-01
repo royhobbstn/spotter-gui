@@ -8,6 +8,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Store } from './Redux/combine_reducers';
 import { thunkGetInstanceData } from './Redux/Status/status_thunks';
+import { loadAllInitialData } from './Redux/Initial/initial_thunks';
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -21,4 +22,5 @@ ReactDOM.render(
 );
 
 // initialize data
+store.dispatch(loadAllInitialData());
 store.dispatch(thunkGetInstanceData());

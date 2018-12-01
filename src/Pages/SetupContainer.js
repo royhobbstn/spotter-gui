@@ -5,7 +5,7 @@ const mapStateToProps = state => {
   return {
     setup_page_status: state.setup_reducer.setup_page_status,
     selected_profiles: state.initial_reducer.selected_profiles,
-    all_profiles: state.initial_reducer.all_profiles
+    credential_profiles: state.initial_reducer.credential_profiles
   };
 };
 
