@@ -3,10 +3,10 @@
 const default_state = {
   // global
   app_loading: true,
-  active_menu_item: 'Status', // Status, Launch, Configure, Setup
+  active_menu_item: 'Status', // Status, Configure, Setup
   saved_profiles: {}, // load from JSON
   image_list: {}, // load from JSON
-  selected_profiles: {}, // load from JSON
+  selected_credential_profiles: {}, // load from JSON
   credential_profiles: {} // load from JSON
 };
 
@@ -19,7 +19,7 @@ const initial_reducer = (state = default_state, action) => {
         credential_profiles: action.credential_profiles,
         image_list: action.image_list,
         saved_profiles: action.saved_profiles,
-        selected_profiles: action.selected_profiles
+        selected_credential_profiles: action.selected_credential_profiles
       });
 
     case 'INSTANCE_DATA_LOADING':
@@ -42,15 +42,12 @@ const initial_reducer = (state = default_state, action) => {
         active_menu_item: 'Setup'
       });
 
-    // launch
-
-    case 'RESET_LAUNCH_PAGE':
-      return Object.assign({}, state, {
-        active_menu_item: 'Launch'
-      });
-
     // configure
 
+    case 'DISPLAY_CONFIGURE_PAGE_ERROR':
+      return Object.assign({}, state, {
+        active_menu_item: 'Configure'
+      });
     case 'ADD_F1_PROFILE':
       const updated_profiles = { profiles: [...state.saved_profiles.profiles, action.data] };
       return Object.assign({}, state, { saved_profiles: updated_profiles });
@@ -62,6 +59,18 @@ const initial_reducer = (state = default_state, action) => {
       return Object.assign({}, state, {
         saved_profiles: action.saved_profiles,
         image_list: action.image_list
+      });
+    case 'DELETE_PROFILE':
+      const profile_copy = {
+        profiles: [
+          ...state.saved_profiles.profiles.filter(p => {
+            return p.profileLabel !== action.profile;
+          })
+        ]
+      };
+      console.log(profile_copy);
+      return Object.assign({}, state, {
+        saved_profiles: profile_copy
       });
 
     default:

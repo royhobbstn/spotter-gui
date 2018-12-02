@@ -14,7 +14,7 @@ export function loadAllInitialData() {
     let credential_profiles;
     let image_list;
     let saved_profiles;
-    let selected_profiles;
+    let selected_credential_profiles;
 
     try {
       const response = await window.fetch('/loadInitialData');
@@ -22,7 +22,7 @@ export function loadAllInitialData() {
       credential_profiles = initial_data.credential_profiles;
       image_list = initial_data.image_list;
       saved_profiles = initial_data.saved_profiles;
-      selected_profiles = initial_data.selected_profiles;
+      selected_credential_profiles = initial_data.selected_credential_profiles;
 
       if (response.status !== 200) {
         throw Error('There was an error calling loadInitialData');
@@ -35,7 +35,12 @@ export function loadAllInitialData() {
     }
 
     dispatch(
-      actionUpdateBaseData(credential_profiles, image_list, saved_profiles, selected_profiles)
+      actionUpdateBaseData(
+        credential_profiles,
+        image_list,
+        saved_profiles,
+        selected_credential_profiles
+      )
     );
   };
 }

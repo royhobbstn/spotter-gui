@@ -26,7 +26,8 @@ export const Configure = ({
   f1_min_ram,
   f1_min_gpu,
   f1_profile_type,
-  f1_profile_location
+  f1_profile_location,
+  f1_profile_name_valid
 }) => {
   const profiles = saved_profiles.profiles || [];
 
@@ -70,8 +71,12 @@ export const Configure = ({
                         }}
                       >
                         <Icon
-                          name={delete_profile_in_progress ? 'spinner' : 'minus circle'}
-                          loading={delete_profile_in_progress}
+                          name={
+                            delete_profile_in_progress === p.profileLabel
+                              ? 'spinner'
+                              : 'minus circle'
+                          }
+                          loading={delete_profile_in_progress === p.profileLabel}
                           color="red"
                           size="large"
                         />
@@ -105,6 +110,7 @@ export const Configure = ({
                   label="Profile Name"
                   onChange={changeF1ProfileName}
                   value={f1_profile_name}
+                  error={!f1_profile_name_valid}
                 />
               </Grid.Column>
               <Grid.Column>

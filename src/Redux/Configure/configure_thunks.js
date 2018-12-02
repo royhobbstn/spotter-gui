@@ -12,44 +12,42 @@ import {
   actionAddF1Profile
 } from './configure_actions';
 
-import { postData } from '../../Utility/http';
+import { postData, deleteData } from '../../Utility/http';
 
 export function thunkClickConfigurePage() {
   return async (dispatch, getState) => {
-    dispatch(actionResetConfigurePageState());
-
-    let saved_profiles = {};
-    let image_list = {};
-
-    try {
-      const response = await window.fetch('/configurePage');
-      const parsed_response = await response.json();
-      [saved_profiles, image_list] = parsed_response.data;
-
-      if (response.status !== 200) {
-        throw Error('There was an error calling configurePage');
-      }
-    } catch (e) {
-      // return information or error state
-      console.log('Error retrieving configurePage information.');
-      console.log(e);
-      return dispatch(actionSetConfigurePageError());
-    }
-
-    dispatch(actionLoadProfileData(saved_profiles, image_list));
+    // dispatch(actionResetConfigurePageState());
+    //
+    // let saved_profiles = {};
+    // let image_list = {};
+    //
+    // try {
+    //   const response = await window.fetch('/configurePage');
+    //   const parsed_response = await response.json();
+    //   [saved_profiles, image_list] = parsed_response.data;
+    //
+    //   if (response.status !== 200) {
+    //     throw Error('There was an error calling configurePage');
+    //   }
+    // } catch (e) {
+    //   // return information or error state
+    //   console.log('Error retrieving configurePage information.');
+    //   console.log(e);
+    return dispatch(actionSetConfigurePageError());
+    // }
+    //
+    // dispatch(actionLoadProfileData(saved_profiles, image_list));
   };
 }
 
 export function thunkDeleteProfile(profile_name) {
   return async (dispatch, getState) => {
     const encoded_profile = window.encodeURIComponent(profile_name);
-    console.log({ encoded_profile });
-
-    dispatch(actionDeleteProfileInProgress());
+    dispatch(actionDeleteProfileInProgress(profile_name));
 
     // delete profile on server (only need a 200)
     try {
-      const response = await window.fetch(`/deleteProfile?profile=${encoded_profile}`); // TODO Delete method
+      const response = await deleteData(`/Profile/${encoded_profile}`);
       if (response.status !== 200) {
         throw Error(`There was an error deleting profile:${profile_name}`);
       }

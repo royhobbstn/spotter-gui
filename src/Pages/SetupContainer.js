@@ -4,7 +4,7 @@ import { Setup } from './Setup.js';
 const mapStateToProps = state => {
   return {
     setup_page_status: state.setup_reducer.setup_page_status,
-    selected_profiles: state.initial_reducer.selected_profiles,
+    selected_credential_profiles: state.initial_reducer.selected_credential_profiles,
     credential_profiles: state.initial_reducer.credential_profiles
   };
 };

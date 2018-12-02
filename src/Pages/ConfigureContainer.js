@@ -21,6 +21,7 @@ const mapStateToProps = state => {
     delete_profile_in_progress: state.configure_reducer.delete_profile_in_progress,
     show_add_profile_dialog: state.configure_reducer.show_add_profile_dialog,
     f1_profile_name: state.configure_reducer.f1_profile_name,
+    f1_profile_name_valid: state.configure_reducer.f1_profile_name_valid,
     f1_ami_image: state.configure_reducer.f1_ami_image,
     f1_min_cpu: state.configure_reducer.f1_min_cpu,
     f1_min_ram: state.configure_reducer.f1_min_ram,
@@ -30,7 +31,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, getState) => {
   return {
     deleteProfile: profile_name => {
       dispatch(thunkDeleteProfile(profile_name));
@@ -45,7 +46,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(thunkAddF1FormProfile());
     },
     changeF1ProfileName: (evt, data) => {
-      dispatch(actionChangeF1ProfileName(data.value));
+      const valid = data.value !== '';
+      dispatch(actionChangeF1ProfileName(data.value, valid));
     },
     changeF1AMIImage: (evt, data) => {
       dispatch(actionChangeF1AMIImage(data.value));

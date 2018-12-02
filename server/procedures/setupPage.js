@@ -23,7 +23,7 @@ exports.setupPage = async function() {
   }
 
   try {
-    const response = await fs.readFile('./server/data/selected_profiles.json');
+    const response = await fs.readFile('./server/data/selected_credential_profiles.json');
     const parsed = JSON.parse(response.toString());
 
     // check to make sure selected aws profile exists
@@ -37,7 +37,7 @@ exports.setupPage = async function() {
       microsoft: microsoft_exists ? parsed.microsoft : 'None'
     };
   } catch (e) {
-    logger.info('Could not load/parse data/selected_profiles.json.  Might not exist.');
+    logger.info('Could not load/parse data/selected_credential_profiles.json.  Might not exist.');
     console.log(e);
   }
 

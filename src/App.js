@@ -1,6 +1,5 @@
 import React from 'react';
 import { TopMenuContainer } from './Components/TopMenuContainer';
-import { LaunchContainer } from './Pages/LaunchContainer';
 import { SetupContainer } from './Pages/SetupContainer';
 import { ConfigureContainer } from './Pages/ConfigureContainer';
 import { StatusContainer } from './Pages/StatusContainer';
@@ -25,8 +24,6 @@ export function App({ active_menu_item, app_loading }) {
 function getPage(active_menu_item) {
   console.log(`Navigating to page: ${active_menu_item}`);
   switch (active_menu_item) {
-    case 'Launch':
-      return <LaunchContainer />;
     case 'Setup':
       return <SetupContainer />;
     case 'Configure':

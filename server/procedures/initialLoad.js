@@ -15,9 +15,11 @@ exports.loadInitialData = async function() {
   const saved_profiles_response = await fs.readFile('./server/data/saved_profiles.json');
   const saved_profiles = JSON.parse(saved_profiles_response.toString());
 
-  // selected profiles.json  // TODO rename selected credentials
-  const selected_profiles_response = await fs.readFile('./server/data/selected_profiles.json');
-  const selected_profiles = JSON.parse(selected_profiles_response.toString());
+  // selected credential profiles.json
+  const selected_credential_profiles_response = await fs.readFile(
+    './server/data/selected_credential_profiles.json'
+  );
+  const selected_credential_profiles = JSON.parse(selected_credential_profiles_response.toString());
 
-  return { credential_profiles, image_list, saved_profiles, selected_profiles };
+  return { credential_profiles, image_list, saved_profiles, selected_credential_profiles };
 };

@@ -5,7 +5,6 @@ export const TopMenu = ({
   active_menu_item,
   clickSetupPage,
   clickConfigurePage,
-  clickLaunchPage,
   clickStatusPage
 }) => {
   return (
@@ -16,13 +15,6 @@ export const TopMenu = ({
           active={active_menu_item === 'Status'}
           onClick={() => {
             clickStatusPage();
-          }}
-        />
-        <Menu.Item
-          name="Launch"
-          active={active_menu_item === 'Launch'}
-          onClick={() => {
-            clickLaunchPage();
           }}
         />
         <Menu.Item

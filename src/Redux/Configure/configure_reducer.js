@@ -2,9 +2,9 @@
 
 const default_state = {
   configure_page_status: '',
-  delete_profile_in_progress: false,
+  delete_profile_in_progress: '', // name of profile being deleted
   add_profile_in_progress: false,
-  show_add_profile_dialog: true,
+  show_add_profile_dialog: false,
   f1_profile_name: '',
   f1_ami_image: 'Ubuntu-16.04',
   f1_min_cpu: 0,
@@ -12,7 +12,8 @@ const default_state = {
   f1_min_gpu: 0,
   f1_profile_type: 'git',
   f1_profile_location: '',
-  f1_copy_local_files: []
+  f1_copy_local_files: [],
+  f1_profile_name_valid: false
 };
 
 const configure_reducer = (state = default_state, action) => {
@@ -27,12 +28,15 @@ const configure_reducer = (state = default_state, action) => {
         f1_profile_type: 'git',
         f1_profile_location: '',
         f1_copy_local_files: [],
-        show_add_profile_dialog: false // TODO Show in UI
+        show_add_profile_dialog: false
       });
     case 'F1_FORM_ADD_IN_PROGRESS':
       return Object.assign({}, state, { add_profile_in_progress: true });
     case 'CHANGE_F1_PROFILE_NAME':
-      return Object.assign({}, state, { f1_profile_name: action.data });
+      return Object.assign({}, state, {
+        f1_profile_name: action.data,
+        f1_profile_name_valid: action.valid
+      });
     case 'CHANGE_F1_AMI_IMAGE':
       return Object.assign({}, state, { f1_ami_image: action.data });
     case 'CHANGE_F1_MIN_CPU':
@@ -53,7 +57,6 @@ const configure_reducer = (state = default_state, action) => {
 
     case 'RESET_CONFIGURE_PAGE':
       return Object.assign({}, state, {
-        active_menu_item: 'Configure',
         configure_page_status: 'loading'
       });
     case 'DISPLAY_CONFIGURE_PAGE_ERROR':
@@ -68,7 +71,11 @@ const configure_reducer = (state = default_state, action) => {
       });
     case 'DELETE_PROFILE_IN_PROGRESS':
       return Object.assign({}, state, {
-        delete_profile_in_progress: true
+        delete_profile_in_progress: action.profile
+      });
+    case 'DELETE_PROFILE':
+      return Object.assign({}, state, {
+        delete_profile_in_progress: ''
       });
     case 'SHOW_ADD_PROFILE_DIALOG':
       return Object.assign({}, state, {

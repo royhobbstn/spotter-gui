@@ -19,9 +19,10 @@ export function actionLoadProfileData(saved_profiles, image_list) {
   };
 }
 
-export function actionDeleteProfileInProgress() {
+export function actionDeleteProfileInProgress(profile) {
   return {
-    type: 'DELETE_PROFILE_IN_PROGRESS'
+    type: 'DELETE_PROFILE_IN_PROGRESS',
+    profile
   };
 }
 
@@ -39,7 +40,7 @@ export function actionSetF1FormAddErrorMessage() {
 
 export function actionDeleteProfile(profile) {
   return {
-    type: 'DELETE_PROFILE', // TODO (not implemented)
+    type: 'DELETE_PROFILE',
     profile
   };
 }
@@ -64,10 +65,11 @@ export function actionCancelConfigureForm(data) {
   };
 }
 
-export function actionChangeF1ProfileName(data) {
+export function actionChangeF1ProfileName(data, valid) {
   return {
     type: 'CHANGE_F1_PROFILE_NAME',
-    data
+    data,
+    valid
   };
 }
 
