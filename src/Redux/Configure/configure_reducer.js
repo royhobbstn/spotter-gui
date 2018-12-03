@@ -1,10 +1,6 @@
 //
 
-const default_state = {
-  configure_page_status: '',
-  delete_profile_in_progress: '', // name of profile being deleted
-  add_profile_in_progress: false,
-  show_add_profile_dialog: false,
+const default_form_state = {
   f1_profile_name: '',
   f1_ami_image: 'Ubuntu-16.04',
   f1_min_cpu: 0,
@@ -16,18 +12,19 @@ const default_state = {
   f1_profile_name_valid: false
 };
 
+const default_state = {
+  configure_page_status: '',
+  delete_profile_in_progress: '', // name of profile being deleted
+  add_profile_in_progress: false,
+  show_add_profile_dialog: false,
+  ...default_form_state
+};
+
 const configure_reducer = (state = default_state, action) => {
   switch (action.type) {
     case 'ADD_F1_PROFILE':
       return Object.assign({}, state, {
-        f1_profile_name: '',
-        f1_ami_image: 'Ubuntu-16.04',
-        f1_min_cpu: 0,
-        f1_min_ram: 0,
-        f1_min_gpu: 0,
-        f1_profile_type: 'git',
-        f1_profile_location: '',
-        f1_copy_local_files: [],
+        ...default_form_state,
         show_add_profile_dialog: false
       });
     case 'F1_FORM_ADD_IN_PROGRESS':
@@ -52,6 +49,7 @@ const configure_reducer = (state = default_state, action) => {
 
     case 'CANCEL_CONFIGURE_FORM':
       return Object.assign({}, state, {
+        ...default_form_state,
         show_add_profile_dialog: false
       });
 
@@ -59,14 +57,10 @@ const configure_reducer = (state = default_state, action) => {
       return Object.assign({}, state, {
         configure_page_status: 'loading'
       });
-    case 'DISPLAY_CONFIGURE_PAGE_ERROR':
-      return Object.assign({}, state, {
-        configure_page_status: 'error'
-      });
     case 'LOAD_PROFILE_DATA':
       return Object.assign({}, state, {
         configure_page_status: 'content',
-        saved_profiles: action.saved_profiles,
+        launch_profiles: action.launch_profiles,
         image_list: action.image_list
       });
     case 'DELETE_PROFILE_IN_PROGRESS':

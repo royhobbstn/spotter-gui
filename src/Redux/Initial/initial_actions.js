@@ -1,17 +1,11 @@
 //
 
-export function actionUpdateBaseData(
-  credential_profiles,
-  image_list,
-  saved_profiles,
-  selected_credential_profiles
-) {
+export function actionUpdateBaseData(credentials, image_list, launch_profiles) {
   return {
     type: 'UPDATE_BASE_DATA',
-    credential_profiles,
+    credentials,
     image_list,
-    saved_profiles,
-    selected_credential_profiles
+    launch_profiles
   };
 }
 

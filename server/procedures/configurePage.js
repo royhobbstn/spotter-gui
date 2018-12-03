@@ -3,13 +3,13 @@ const fs = require('fs').promises;
 const logger = require('../modules/logger.js').logger;
 
 exports.configurePage = async function() {
-  let saved_profiles = {};
+  let launch_profiles = {};
 
   try {
-    const response = await fs.readFile('./server/data/saved_profiles.json');
-    saved_profiles = JSON.parse(response.toString());
+    const response = await fs.readFile('./server/data/launch_profiles.json');
+    launch_profiles = JSON.parse(response.toString());
   } catch (e) {
-    logger.error('Problem parsing response from saved_profiles.json');
+    logger.error('Problem parsing response from launch_profiles.json');
     logger.error(e);
   }
 
@@ -23,5 +23,5 @@ exports.configurePage = async function() {
     logger.error(e);
   }
 
-  return { data: [saved_profiles, image_list] };
+  return { data: [launch_profiles, image_list] };
 };

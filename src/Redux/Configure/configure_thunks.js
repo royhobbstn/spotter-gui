@@ -3,9 +3,6 @@
 import {
   actionDeleteProfile,
   actionDeleteProfileInProgress,
-  actionLoadProfileData,
-  actionResetConfigurePageState,
-  actionSetConfigurePageError,
   actionSetProfileDeleteErrorMessage,
   actionSetF1FormAddErrorMessage,
   actionSetF1FormAddInProgress,
@@ -13,32 +10,6 @@ import {
 } from './configure_actions';
 
 import { postData, deleteData } from '../../Utility/http';
-
-export function thunkClickConfigurePage() {
-  return async (dispatch, getState) => {
-    // dispatch(actionResetConfigurePageState());
-    //
-    // let saved_profiles = {};
-    // let image_list = {};
-    //
-    // try {
-    //   const response = await window.fetch('/configurePage');
-    //   const parsed_response = await response.json();
-    //   [saved_profiles, image_list] = parsed_response.data;
-    //
-    //   if (response.status !== 200) {
-    //     throw Error('There was an error calling configurePage');
-    //   }
-    // } catch (e) {
-    //   // return information or error state
-    //   console.log('Error retrieving configurePage information.');
-    //   console.log(e);
-    return dispatch(actionSetConfigurePageError());
-    // }
-    //
-    // dispatch(actionLoadProfileData(saved_profiles, image_list));
-  };
-}
 
 export function thunkDeleteProfile(profile_name) {
   return async (dispatch, getState) => {

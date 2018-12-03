@@ -1,8 +1,6 @@
 //
 
-const default_state = {
-  setup_page_status: '' // loading, content, error
-};
+const default_state = {};
 
 const setup_reducer = (state = default_state, action) => {
   switch (action.type) {

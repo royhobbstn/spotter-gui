@@ -1,21 +1,8 @@
-export function actionResetConfigurePageState() {
-  return {
-    type: 'RESET_CONFIGURE_PAGE'
-  };
-}
+//
 
-export function actionSetConfigurePageError(error) {
+export function actionClickConfigurePage() {
   return {
-    type: 'DISPLAY_CONFIGURE_PAGE_ERROR',
-    error
-  };
-}
-
-export function actionLoadProfileData(saved_profiles, image_list) {
-  return {
-    type: 'LOAD_PROFILE_DATA',
-    saved_profiles,
-    image_list
+    type: 'DISPLAY_CONFIGURE_PAGE'
   };
 }
 

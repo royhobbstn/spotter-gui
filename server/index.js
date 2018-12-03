@@ -19,10 +19,10 @@ app.delete('/Profile/:profile', async function(req, res) {
   const profile_to_delete = decodeURIComponent(req.params.profile);
 
   // read profile file
-  let saved_profiles;
+  let launch_profiles;
   try {
-    const saved_profiles_response = await fs.readFile('./server/data/saved_profiles.json');
-    saved_profiles = JSON.parse(saved_profiles_response.toString());
+    const launch_profiles_response = await fs.readFile('./server/data/launch_profiles.json');
+    launch_profiles = JSON.parse(launch_profiles_response.toString());
   } catch (e) {
     logger.error('Error loading saved profiles');
     logger.error(e.message);
@@ -34,7 +34,7 @@ app.delete('/Profile/:profile', async function(req, res) {
   try {
     updated_profiles = {
       profiles: [
-        ...saved_profiles.profiles.filter(p => {
+        ...launch_profiles.profiles.filter(p => {
           return p.profileLabel !== profile_to_delete;
         })
       ]
@@ -49,7 +49,7 @@ app.delete('/Profile/:profile', async function(req, res) {
   // save profile file
   try {
     await fs.writeFile(
-      './server/data/saved_profiles.json',
+      './server/data/launch_profiles.json',
       JSON.stringify(updated_profiles, null, '\t')
     );
   } catch (e) {
@@ -63,10 +63,10 @@ app.delete('/Profile/:profile', async function(req, res) {
 
 app.post('/Profile', async function(req, res) {
   // read profile file
-  let saved_profiles;
+  let launch_profiles;
   try {
-    const saved_profiles_response = await fs.readFile('./server/data/saved_profiles.json');
-    saved_profiles = JSON.parse(saved_profiles_response.toString());
+    const launch_profiles_response = await fs.readFile('./server/data/launch_profiles.json');
+    launch_profiles = JSON.parse(launch_profiles_response.toString());
   } catch (e) {
     logger.error('Error loading saved profiles');
     logger.error(e.message);
@@ -76,7 +76,7 @@ app.post('/Profile', async function(req, res) {
 
   // add req.body to array of profiles
   try {
-    saved_profiles.profiles.push(req.body);
+    launch_profiles.profiles.push(req.body);
   } catch (e) {
     logger.error('Error adding sent profile to profiles data array');
     logger.error(e.message);
@@ -86,7 +86,7 @@ app.post('/Profile', async function(req, res) {
 
   // save profile file
   try {
-    await fs.writeFile('./server/data/saved_profiles.json', JSON.stringify(saved_profiles));
+    await fs.writeFile('./server/data/launch_profiles.json', JSON.stringify(launch_profiles));
   } catch (e) {
     logger.error('Error saving profiles');
     logger.error(e.message);

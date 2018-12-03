@@ -4,10 +4,9 @@ const default_state = {
   // global
   app_loading: true,
   active_menu_item: 'Status', // Status, Configure, Setup
-  saved_profiles: {}, // load from JSON
+  launch_profiles: {}, // load from JSON
   image_list: {}, // load from JSON
-  selected_credential_profiles: {}, // load from JSON
-  credential_profiles: {} // load from JSON
+  credentials: {} // load from JSON
 };
 
 const initial_reducer = (state = default_state, action) => {
@@ -16,10 +15,9 @@ const initial_reducer = (state = default_state, action) => {
 
     case 'UPDATE_BASE_DATA':
       return Object.assign({}, state, {
-        credential_profiles: action.credential_profiles,
+        credentials: action.credentials,
         image_list: action.image_list,
-        saved_profiles: action.saved_profiles,
-        selected_credential_profiles: action.selected_credential_profiles
+        launch_profiles: action.launch_profiles
       });
 
     case 'INSTANCE_DATA_LOADING':
@@ -44,33 +42,32 @@ const initial_reducer = (state = default_state, action) => {
 
     // configure
 
-    case 'DISPLAY_CONFIGURE_PAGE_ERROR':
+    case 'DISPLAY_CONFIGURE_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Configure'
       });
     case 'ADD_F1_PROFILE':
-      const updated_profiles = { profiles: [...state.saved_profiles.profiles, action.data] };
-      return Object.assign({}, state, { saved_profiles: updated_profiles });
+      const updated_profiles = { profiles: [...state.launch_profiles.profiles, action.data] };
+      return Object.assign({}, state, { launch_profiles: updated_profiles });
     case 'RESET_CONFIGURE_PAGE':
       return Object.assign({}, state, {
         active_menu_item: 'Configure'
       });
     case 'LOAD_PROFILE_DATA':
       return Object.assign({}, state, {
-        saved_profiles: action.saved_profiles,
+        launch_profiles: action.launch_profiles,
         image_list: action.image_list
       });
     case 'DELETE_PROFILE':
       const profile_copy = {
         profiles: [
-          ...state.saved_profiles.profiles.filter(p => {
+          ...state.launch_profiles.profiles.filter(p => {
             return p.profileLabel !== action.profile;
           })
         ]
       };
-      console.log(profile_copy);
       return Object.assign({}, state, {
-        saved_profiles: profile_copy
+        launch_profiles: profile_copy
       });
 
     default:

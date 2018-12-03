@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { TopMenu } from './TopMenu.js';
 
 import { thunkGetInstanceData } from '../Redux/Status/status_thunks';
-import { thunkClickConfigurePage } from '../Redux/Configure/configure_thunks';
+import { actionClickConfigurePage } from '../Redux/Configure/configure_actions';
 import { actionClickSetupPage } from '../Redux/Setup/setup_actions';
 
 const mapStateToProps = state => {
@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionClickSetupPage());
     },
     clickConfigurePage: () => {
-      dispatch(thunkClickConfigurePage());
+      dispatch(actionClickConfigurePage());
     },
     clickStatusPage: () => {
       dispatch(thunkGetInstanceData());

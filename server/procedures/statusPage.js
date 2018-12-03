@@ -4,26 +4,31 @@ const logger = require('../modules/logger.js').logger;
 
 const AWS = require('aws-sdk');
 
-const { setupPage } = require('./setupPage');
-
 exports.loadInstanceData = async function() {
-  const [config, selected] = await setupPage();
+  let credentials = {};
 
-  const config_file = await fs.readFile('./server/data/config.json');
-  const parsed_config_file = JSON.parse(config_file.toString());
+  try {
+    const response = await fs.readFile('./server/data/credentials.json');
+    credentials = JSON.parse(response.toString());
+  } catch (e) {
+    logger.info('Could not load/parse data/config.json file.  Might not exist.');
+    console.log(e);
+  }
 
-  const selected_config = parsed_config_file.aws.find(d => {
-    return d.profileName === selected.aws;
+  // TODO pick right credentials
+  const selected_config = credentials.credentials.filter(d => {
+    return d.service === 'aws';
   });
 
   AWS.config.update({
-    accessKeyId: selected_config.accessKeyId,
-    secretAccessKey: selected_config.secretAccessKey,
+    accessKeyId: selected_config[0].details.accessKeyId,
+    secretAccessKey: selected_config[0].details.secretAccessKey,
     region: 'us-west-2'
   });
 
   const ec2 = new AWS.EC2({ apiVersion: '2016-11-15' });
 
+  // TODO (have an instance list?)
   const data = await fs.readFile('./server/data/instance_list.json');
 
   let instance_list = [];

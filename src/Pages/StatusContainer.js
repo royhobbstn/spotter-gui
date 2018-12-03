@@ -4,7 +4,7 @@ import { Status } from './Status.js';
 const mapStateToProps = state => {
   return {
     instance_data: state.status_reducer.instance_data,
-    saved_profiles: state.initial_reducer.saved_profiles
+    launch_profiles: state.initial_reducer.launch_profiles
   };
 };
 

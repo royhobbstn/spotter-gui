@@ -11,10 +11,8 @@ const cell_style = {
   padding: '5px'
 };
 
-export const Status = ({ instance_data, launchInstance, saved_profiles }) => {
-  console.log(saved_profiles);
-  console.log(launchInstance);
-  const profiles = saved_profiles.profiles || [];
+export const Status = ({ instance_data, launchInstance, launch_profiles }) => {
+  const profiles = launch_profiles.profiles || [];
 
   const options = profiles.map(p => {
     return { text: p.profileLabel, value: p.profileLabel };

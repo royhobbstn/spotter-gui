@@ -47,7 +47,7 @@ yarn-error.log*
 
 .idea
 logfile.log
-config.json
+credentials.json
 
 instance_list.json
 saved_profiles.json
