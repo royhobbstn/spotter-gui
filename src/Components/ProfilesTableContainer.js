@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { ProfilesTable } from './ProfilesTable.js';
 
-import { thunkDeleteProfile } from '../Redux/Configure/configure_thunks';
+import { thunkDeleteProfile } from '../Redux/Profile/profile_thunks';
 
 const mapStateToProps = state => {
   return {
-    launch_profiles: state.initial_reducer.launch_profiles,
-    delete_profile_in_progress: state.configure_reducer.delete_profile_in_progress
+    launch_profiles: state.profile_reducer.launch_profiles,
+    delete_profile_in_progress: state.profile_reducer.delete_profile_in_progress
   };
 };
 

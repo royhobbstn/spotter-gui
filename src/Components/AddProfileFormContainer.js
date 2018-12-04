@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { AddProfileForm } from './AddProfileForm';
 
-import { thunkAddF1FormProfile } from '../Redux/Configure/configure_thunks';
+import { thunkAddF1FormProfile } from '../Redux/Profile/profile_thunks';
 import {
-  actionCancelConfigureForm,
+  actionCancelProfileForm,
   actionChangeF1ProfileName,
   actionChangeF1AMIImage,
   actionChangeF1MinCpu,
@@ -11,21 +11,21 @@ import {
   actionChangeF1MinGPU,
   actionChangeF1ProfileType,
   actionChangeF1ProfileLocation
-} from '../Redux/Configure/configure_actions';
+} from '../Redux/Profile/profile_actions';
 
 import { isF1FormValid } from '../Redux/selectors';
 
 const mapStateToProps = state => {
   return {
-    image_list: state.initial_reducer.image_list,
-    f1_profile_name: state.configure_reducer.f1_profile_name,
-    f1_profile_name_valid: state.configure_reducer.f1_profile_name_valid,
-    f1_ami_image: state.configure_reducer.f1_ami_image,
-    f1_min_cpu: state.configure_reducer.f1_min_cpu,
-    f1_min_ram: state.configure_reducer.f1_min_ram,
-    f1_min_gpu: state.configure_reducer.f1_min_gpu,
-    f1_profile_type: state.configure_reducer.f1_profile_type,
-    f1_profile_location: state.configure_reducer.f1_profile_location,
+    image_list: state.images_reducer.image_list,
+    f1_profile_name: state.profile_reducer.f1_profile_name,
+    f1_profile_name_valid: state.profile_reducer.f1_profile_name_valid,
+    f1_ami_image: state.profile_reducer.f1_ami_image,
+    f1_min_cpu: state.profile_reducer.f1_min_cpu,
+    f1_min_ram: state.profile_reducer.f1_min_ram,
+    f1_min_gpu: state.profile_reducer.f1_min_gpu,
+    f1_profile_type: state.profile_reducer.f1_profile_type,
+    f1_profile_location: state.profile_reducer.f1_profile_location,
     isF1FormValid: isF1FormValid(state)
   };
 };
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, getState) => {
   return {
     cancelF1Form: () => {
-      dispatch(actionCancelConfigureForm());
+      dispatch(actionCancelProfileForm());
     },
     addF1FormProfile: () => {
       dispatch(thunkAddF1FormProfile());

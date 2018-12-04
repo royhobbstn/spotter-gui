@@ -2,8 +2,9 @@ import { connect } from 'react-redux';
 import { TopMenu } from './TopMenu.js';
 
 import { thunkGetInstanceData } from '../Redux/Status/status_thunks';
-import { actionClickConfigurePage } from '../Redux/Configure/configure_actions';
-import { actionClickSetupPage } from '../Redux/Setup/setup_actions';
+import { actionClickProfilePage } from '../Redux/Profile/profile_actions';
+import { actionClickCredentialsPage } from '../Redux/Credentials/credentials_actions';
+import { actionClickImagesPage } from '../Redux/Images/images_actions';
 
 const mapStateToProps = state => {
   return {
@@ -13,14 +14,17 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    clickSetupPage: () => {
-      dispatch(actionClickSetupPage());
+    clickCredentialsPage: () => {
+      dispatch(actionClickCredentialsPage());
     },
-    clickConfigurePage: () => {
-      dispatch(actionClickConfigurePage());
+    clickProfilePage: () => {
+      dispatch(actionClickProfilePage());
     },
     clickStatusPage: () => {
       dispatch(thunkGetInstanceData());
+    },
+    clickImagesPage: () => {
+      dispatch(actionClickImagesPage());
     }
   };
 };

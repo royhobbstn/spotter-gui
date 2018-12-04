@@ -1,8 +1,8 @@
 //
 
-export function actionClickConfigurePage() {
+export function actionClickProfilePage() {
   return {
-    type: 'DISPLAY_CONFIGURE_PAGE'
+    type: 'DISPLAY_PROFILE_PAGE'
   };
 }
 
@@ -45,9 +45,9 @@ export function actionShowAddProfileDialog(data) {
   };
 }
 
-export function actionCancelConfigureForm(data) {
+export function actionCancelProfileForm(data) {
   return {
-    type: 'CANCEL_CONFIGURE_FORM',
+    type: 'CANCEL_PROFILE_FORM',
     data
   };
 }

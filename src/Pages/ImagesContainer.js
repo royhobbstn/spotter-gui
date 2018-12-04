@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { Setup } from './Setup.js';
+import { Images } from './Images.js';
 
 const mapStateToProps = state => {
   return {
-    credentials: state.initial_reducer.credentials
+    image_list: state.images_reducer.image_list
   };
 };
 
@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch => {
   return {};
 };
 
-export const SetupContainer = connect(
+export const ImagesContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Setup);
+)(Images);

@@ -1,8 +1,9 @@
 import React from 'react';
 import { TopMenuContainer } from './Components/TopMenuContainer';
-import { SetupContainer } from './Pages/SetupContainer';
-import { ConfigureContainer } from './Pages/ConfigureContainer';
+import { CredentialsContainer } from './Pages/CredentialsContainer';
+import { ProfileContainer } from './Pages/ProfileContainer';
 import { StatusContainer } from './Pages/StatusContainer';
+import { ImagesContainer } from './Pages/ImagesContainer';
 
 import { Error } from './Components/Error';
 
@@ -24,12 +25,14 @@ export function App({ active_menu_item, app_loading }) {
 function getPage(active_menu_item) {
   console.log(`Navigating to page: ${active_menu_item}`);
   switch (active_menu_item) {
-    case 'Setup':
-      return <SetupContainer />;
-    case 'Configure':
-      return <ConfigureContainer />;
+    case 'Credentials':
+      return <CredentialsContainer />;
+    case 'Profile':
+      return <ProfileContainer />;
     case 'Status':
       return <StatusContainer />;
+    case 'Images':
+      return <ImagesContainer />;
     default:
       return <Error />;
   }

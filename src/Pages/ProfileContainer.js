@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { Configure } from './Configure.js';
+import { Profile } from './Profile.js';
 
-import { actionShowAddProfileDialog } from '../Redux/Configure/configure_actions';
+import { actionShowAddProfileDialog } from '../Redux/Profile/profile_actions';
 
 const mapStateToProps = state => {
   return {
-    show_add_profile_dialog: state.configure_reducer.show_add_profile_dialog
+    show_add_profile_dialog: state.profile_reducer.show_add_profile_dialog
   };
 };
 
@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch, getState) => {
   };
 };
 
-export const ConfigureContainer = connect(
+export const ProfileContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Configure);
+)(Profile);

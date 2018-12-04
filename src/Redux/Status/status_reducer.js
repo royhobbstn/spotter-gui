@@ -6,7 +6,7 @@ const default_state = {
   instance_data_error: false
 };
 
-const status_reducer = (state = default_state, action) => {
+export const status_reducer = (state = default_state, action) => {
   switch (action.type) {
     case 'INSTANCE_DATA_LOADING':
       return Object.assign({}, state, {
@@ -30,5 +30,3 @@ const status_reducer = (state = default_state, action) => {
       return state;
   }
 };
-
-export default status_reducer;

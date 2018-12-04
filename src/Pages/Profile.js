@@ -4,7 +4,7 @@ import { Icon, Popup, Divider } from 'semantic-ui-react';
 import { ProfilesTableContainer } from '../Components/ProfilesTableContainer';
 import { AddProfileFormContainer } from '../Components/AddProfileFormContainer';
 
-export const Configure = ({ show_add_profile_dialog, showAddProfileDialog }) => {
+export const Profile = ({ show_add_profile_dialog, showAddProfileDialog }) => {
   return (
     <div>
       <br />

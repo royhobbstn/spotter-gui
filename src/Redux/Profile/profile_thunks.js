@@ -7,7 +7,7 @@ import {
   actionSetF1FormAddErrorMessage,
   actionSetF1FormAddInProgress,
   actionAddF1Profile
-} from './configure_actions';
+} from './profile_actions';
 
 import { postData, deleteData } from '../../Utility/http';
 
@@ -39,14 +39,14 @@ export function thunkAddF1FormProfile() {
     const form_state = getState();
 
     const form_information = {
-      profileLabel: form_state.configure_reducer.f1_profile_name,
-      imageName: form_state.configure_reducer.f1_ami_image,
-      minCpu: form_state.configure_reducer.f1_min_cpu,
-      minRam: form_state.configure_reducer.f1_min_ram,
-      minGpu: form_state.configure_reducer.f1_min_gpu,
-      type: form_state.configure_reducer.f1_profile_type,
-      location: form_state.configure_reducer.f1_profile_location,
-      copyLocalFiles: form_state.configure_reducer.f1_copy_local_files
+      profileLabel: form_state.profile_reducer.f1_profile_name,
+      imageName: form_state.profile_reducer.f1_ami_image,
+      minCpu: form_state.profile_reducer.f1_min_cpu,
+      minRam: form_state.profile_reducer.f1_min_ram,
+      minGpu: form_state.profile_reducer.f1_min_gpu,
+      type: form_state.profile_reducer.f1_profile_type,
+      location: form_state.profile_reducer.f1_profile_location,
+      copyLocalFiles: form_state.profile_reducer.f1_copy_local_files
     };
 
     dispatch(actionSetF1FormAddInProgress());

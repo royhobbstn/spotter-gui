@@ -3,9 +3,10 @@ import { Menu } from 'semantic-ui-react';
 
 export const TopMenu = ({
   active_menu_item,
-  clickSetupPage,
-  clickConfigurePage,
-  clickStatusPage
+  clickCredentialsPage,
+  clickProfilePage,
+  clickStatusPage,
+  clickImagesPage
 }) => {
   return (
     <div style={{ width: '100%', borderRadius: '0', paddingBottom: '20px' }}>
@@ -19,23 +20,23 @@ export const TopMenu = ({
         />
         <Menu.Item
           name="Launch Profiles"
-          active={active_menu_item === 'Configure'}
+          active={active_menu_item === 'Profile'}
           onClick={() => {
-            clickConfigurePage();
+            clickProfilePage();
           }}
         />
-        {/*<Menu.Item*/}
-        {/*name="Images"*/}
-        {/*active={active_menu_item === 'Images'}*/}
-        {/*onClick={() => {*/}
-        {/*clickSetupPage();*/}
-        {/*}}*/}
-        {/*/>*/}
+        <Menu.Item
+          name="Images"
+          active={active_menu_item === 'Images'}
+          onClick={() => {
+            clickImagesPage();
+          }}
+        />
         <Menu.Item
           name="Credentials"
-          active={active_menu_item === 'Setup'}
+          active={active_menu_item === 'Credentials'}
           onClick={() => {
-            clickSetupPage();
+            clickCredentialsPage();
           }}
         />
       </Menu>
