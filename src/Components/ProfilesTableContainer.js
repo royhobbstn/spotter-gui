@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch, getState) => {
   return {
     deleteProfile: profile_name => {
       dispatch(thunkDeleteProfile(profile_name));
+    },
+    editProfile: profile_name => {
+      // TODO
     }
   };
 };

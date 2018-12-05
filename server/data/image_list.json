@@ -1,17 +1,32 @@
 {
-  "Ubuntu-18.04": {
-    "aws": "ami-0bbe6b35405ecebdb",
-    "google": "",
-    "microsoft": ""
-  },
-  "Ubuntu-16.04": {
-    "aws": "ami-0e32ec5bc225539f5",
-    "google": "",
-    "microsoft": ""
-  },
-  "Core-OS-1911.3.0" : {
-    "aws": "ami-0aee4947be233f88c",
-    "google": "",
-    "microsoft": ""
-  }
+  "Ubuntu-18.04": [
+    {
+      "provider": "aws",
+      "image_id": "ami-0bbe6b35405ecebdb"
+    },
+    {
+      "provider": "gcp",
+      "image_id": "ubuntu-1804-bionic-v20181203a"
+    }
+  ],
+  "Ubuntu-16.04": [
+    {
+      "provider": "aws",
+      "image_id": "ami-0e32ec5bc225539f5"
+    },
+    {
+      "provider": "gcp",
+      "image_id": "ubuntu-1604-xenial-v20181204"
+    }
+  ],
+  "Core-OS-1911.3.0": [
+    {
+      "provider": "aws",
+      "image_id": "ami-0aee4947be233f88c"
+    },
+    {
+      "provider": "gcp",
+      "image_id": "coreos-stable-1911-4-0-v20181127"
+    }
+  ]
 }

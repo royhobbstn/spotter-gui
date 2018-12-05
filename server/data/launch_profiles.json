@@ -9,16 +9,6 @@
 			"type": "git",
 			"location": "repo",
 			"copyLocalFiles": []
-		},
-		{
-			"profileLabel": "lkjljkljk",
-			"imageName": "Ubuntu-16.04",
-			"minCpu": 0,
-			"minRam": 0,
-			"minGpu": 0,
-			"type": "git",
-			"location": "",
-			"copyLocalFiles": []
 		}
 	]
 }
