@@ -1,11 +1,17 @@
 //
 
-export function actionUpdateBaseData(credentials, image_list, launch_profiles) {
+export function actionUpdateBaseData(
+  credentials,
+  image_list,
+  launch_profiles,
+  supported_providers
+) {
   return {
     type: 'UPDATE_BASE_DATA',
     credentials,
     image_list,
-    launch_profiles
+    launch_profiles,
+    supported_providers
   };
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Popup, Divider, Button } from 'semantic-ui-react';
+import { Popup, Button } from 'semantic-ui-react';
 
 import { ProfilesTableContainer } from '../Components/ProfilesTableContainer';
 import { AddProfileFormContainer } from '../Components/AddProfileFormContainer';

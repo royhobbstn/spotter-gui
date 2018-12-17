@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "name": "aws"
+    },
+    {
+      "name": "gcp"
+    },
+    {
+      "name": "azure"
+    }
+  ]
+}

@@ -1,14 +1,1 @@
-{
-	"profiles": [
-		{
-			"profileLabel": "main",
-			"imageName": "Ubuntu-18.04",
-			"minCpu": "1",
-			"minRam": "1",
-			"minGpu": "1",
-			"type": "git",
-			"location": "repo",
-			"copyLocalFiles": []
-		}
-	]
-}
+{"profiles":[{"profileLabel":"test","imageName":"Core-OS-1911.3.0","minCpu":0,"minRam":0,"minGpu":0,"type":"git","location":"","copyLocalFiles":[]}]}

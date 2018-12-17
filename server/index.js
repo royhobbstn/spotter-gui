@@ -5,7 +5,6 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
-const { configurePage } = require('./procedures/configurePage');
 const { loadInstanceData } = require('./procedures/statusPage');
 const { loadInitialData } = require('./procedures/initialLoad');
 
@@ -98,6 +97,13 @@ app.post('/Profile', async function(req, res) {
   return res.status(200).send({ message: 'ok' });
 });
 
+app.post('/Credentials', async function(req, res) {
+  // TODO
+
+  // return
+  return res.status(200).send({ message: 'ok' });
+});
+
 app.get('/loadInitialData', async function(req, res) {
   let instance_data = {};
 
@@ -122,19 +128,6 @@ app.get('/loadInstanceData', async function(req, res) {
   }
 
   return res.json(instance_data);
-});
-
-app.get('/configurePage', async function(req, res) {
-  let output = {};
-
-  try {
-    output = await configurePage();
-  } catch (e) {
-    logger.error(e);
-    return res.status(500).json({ error: e.stack });
-  }
-
-  return res.json(output);
 });
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

@@ -6,13 +6,14 @@ import { Table, Icon, Button, Popup } from 'semantic-ui-react';
 export const Images = ({ image_list }) => {
   console.log({ image_list });
   return (
-    <div>
+    <React.Fragment>
+      <br />
       <Table celled columns={16}>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell />
             <Table.HeaderCell>Label</Table.HeaderCell>
-            <Table.HeaderCell>Provider(s)</Table.HeaderCell>
+            <Table.HeaderCell>Provider(s) Supported</Table.HeaderCell>
             <Table.HeaderCell />
           </Table.Row>
         </Table.Header>
@@ -21,7 +22,10 @@ export const Images = ({ image_list }) => {
             return (
               <Table.Row key={key}>
                 <Table.Cell width={1}>
-                  <Icon name="edit" color="grey" circular link />
+                  <Popup
+                    trigger={<Icon name="edit" color="grey" circular link />}
+                    content="Edit Image"
+                  />
                 </Table.Cell>
                 <Table.Cell width={5}>{key}</Table.Cell>
                 <Table.Cell width={9}>
@@ -39,7 +43,10 @@ export const Images = ({ image_list }) => {
                   })}
                 </Table.Cell>
                 <Table.Cell width={1}>
-                  <Icon name="delete" color="red" circular link />
+                  <Popup
+                    trigger={<Icon name="delete" color="red" circular link />}
+                    content="Delete Image"
+                  />
                 </Table.Cell>
               </Table.Row>
             );
@@ -50,6 +57,6 @@ export const Images = ({ image_list }) => {
         trigger={<Button circular icon="plus" color="green" inverted={true} />}
         content="Add New Image"
       />
-    </div>
+    </React.Fragment>
   );
 };

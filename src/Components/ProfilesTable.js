@@ -40,9 +40,11 @@ export function ProfilesTable({
                       }}
                       name="edit"
                       color="grey"
+                      circular
+                      link
                     />
                   }
-                  content="Delete Profile"
+                  content="Edit Profile"
                 />
               </Table.Cell>
               <Table.Cell width={5}>{p.profileLabel}</Table.Cell>

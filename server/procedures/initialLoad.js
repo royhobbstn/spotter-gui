@@ -1,21 +1,21 @@
 //
-const fs = require('fs').promises;
-const logger = require('../modules/logger.js').logger;
+
+const parsed_credentials = require('../data/credentials.json');
+const image_list = require('../data/image_list.json');
+const launch_profiles = require('../data/launch_profiles.json');
+const supported_providers = require('../data/supported_cloud_providers.json');
 
 exports.loadInitialData = async function() {
-  try {
-    const credentials_response = await fs.readFile('./server/data/credentials.json');
-    const credentials = JSON.parse(credentials_response.toString());
+  // remove key information before sending back to the client
+  const credentials = parsed_credentials.credentials.map(c => {
+    // delete AWS keys
+    if (c.service === 'aws') {
+      delete c.details.accessKeyId;
+      delete c.details.secretAccessKey;
+    }
+    // TODO delete other provider keys
+    return c;
+  });
 
-    const image_list_response = await fs.readFile('./server/data/image_list.json');
-    const image_list = JSON.parse(image_list_response.toString());
-
-    const launch_profiles_response = await fs.readFile('./server/data/launch_profiles.json');
-    const launch_profiles = JSON.parse(launch_profiles_response.toString());
-
-    return { credentials, image_list, launch_profiles };
-  } catch (e) {
-    console.log(e);
-    return {};
-  }
+  return { credentials, image_list, launch_profiles, supported_providers };
 };

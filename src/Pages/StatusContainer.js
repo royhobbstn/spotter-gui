@@ -3,17 +3,12 @@ import { Status } from './Status.js';
 
 const mapStateToProps = state => {
   return {
-    instance_data: state.status_reducer.instance_data,
-    launch_profiles: state.profile_reducer.launch_profiles
+    instance_data: state.status_reducer.instance_data
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    launchInstance: () => {
-      console.log('Launch Button Clicked');
-    }
-  };
+  return {};
 };
 
 export const StatusContainer = connect(
