@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "loc": "sloc --format cli-table --keys total,source,comment --exclude \"node_modules|build|.idea\" ."
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,7 +36,8 @@
   ],
   "devDependencies": {
     "nodemon": "^1.18.6",
-    "prettier": "^1.15.2"
+    "prettier": "^1.15.2",
+    "sloc": "^0.2.1"
   },
   "proxy": "http://localhost:3001/"
 }
