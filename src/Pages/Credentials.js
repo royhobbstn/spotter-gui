@@ -7,9 +7,9 @@ import { AddCredentialsFormContainer } from '../Components/AddCredentialsFormCon
 export const Credentials = ({
   credentials,
   show_add_credentials_dialog,
-  showAddCredentialsForm
+  showAddCredentialsForm,
+  editCredentials
 }) => {
-  console.log({ credentials });
   return (
     <React.Fragment>
       <br />
@@ -34,7 +34,7 @@ export const Credentials = ({
                     trigger={
                       <Icon
                         onClick={() => {
-                          // editProfile(p.profileLabel);
+                          editCredentials(c);
                         }}
                         name="edit"
                         color="grey"

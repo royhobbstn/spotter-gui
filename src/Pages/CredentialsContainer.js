@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import { Credentials } from './Credentials.js';
-import { actionShowAddCredentialsForm } from '../Redux/Credentials/credentials_actions';
+import {
+  actionShowAddCredentialsForm,
+  actionEditCredential
+} from '../Redux/Credentials/credentials_actions';
 
 const mapStateToProps = state => {
   return {
@@ -13,6 +16,9 @@ const mapDispatchToProps = dispatch => {
   return {
     showAddCredentialsForm: () => {
       dispatch(actionShowAddCredentialsForm());
+    },
+    editCredentials: credential => {
+      dispatch(actionEditCredential(credential));
     }
   };
 };

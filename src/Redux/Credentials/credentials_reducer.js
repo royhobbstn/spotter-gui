@@ -79,6 +79,16 @@ export const credentials_reducer = (state = default_state, action) => {
         show_add_credentials_dialog: false,
         ...form_defaults
       });
+    case 'EDIT_CREDENTIAL':
+      return Object.assign({}, state, {
+        show_add_credentials_dialog: true,
+        add_credentials_form_selected_provider: action.credential.service,
+        add_credentials_form_default_checked: action.credential.isDefault,
+        add_credentials_form_access_key: '',
+        add_credentials_form_secret_access_key: '',
+        add_credentials_form_label: action.credential.credentialLabel,
+        add_credentials_form_label_valid: true
+      });
     default:
       return state;
   }

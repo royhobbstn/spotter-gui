@@ -73,3 +73,10 @@ export function actionAddCredentialsSuccess(form_data) {
     form_data
   };
 }
+
+export function actionEditCredential(credential) {
+  return {
+    type: 'EDIT_CREDENTIAL',
+    credential
+  };
+}
