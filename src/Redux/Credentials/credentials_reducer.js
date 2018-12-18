@@ -1,16 +1,20 @@
 //
 
-const default_state = {
-  credentials: {},
-  show_add_credentials_dialog: false,
-  supported_providers: {},
-  add_credentials_in_progress: false,
+const form_defaults = {
   add_credentials_form_selected_provider: 'aws',
   add_credentials_form_default_checked: false,
   add_credentials_form_access_key: '',
   add_credentials_form_secret_access_key: '',
   add_credentials_form_label: '',
   add_credentials_form_label_valid: false
+};
+
+const default_state = {
+  credentials: {},
+  show_add_credentials_dialog: false,
+  supported_providers: {},
+  add_credentials_in_progress: false,
+  ...form_defaults
 };
 
 export const credentials_reducer = (state = default_state, action) => {
@@ -24,9 +28,10 @@ export const credentials_reducer = (state = default_state, action) => {
       return Object.assign({}, state, {
         show_add_credentials_dialog: true
       });
-    case 'HIDE_ADD_CREDENTIALS_FORM':
+    case 'CANCEL_ADD_CREDENTIALS_FORM':
       return Object.assign({}, state, {
-        show_add_credentials_dialog: false
+        show_add_credentials_dialog: false,
+        ...form_defaults
       });
     case 'CHANGE_ADD_CREDENTIALS_FORM_ACCESS_KEY':
       return Object.assign({}, state, {
@@ -70,7 +75,9 @@ export const credentials_reducer = (state = default_state, action) => {
 
       const updated_credentials = [...clear_defaults, new_credential];
       return Object.assign({}, state, {
-        credentials: updated_credentials
+        credentials: updated_credentials,
+        show_add_credentials_dialog: false,
+        ...form_defaults
       });
     default:
       return state;

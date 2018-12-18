@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { AddCredentialsForm } from './AddCredentialsForm';
 
 import {
-  actionHideAddCredentialsForm,
+  actionCancelAddCredentialsForm,
   actionChangeAddCredentialsFormAccessKey,
   actionChangeAddCredentialsFormSecretAccessKey,
   actionChangeAddCredentialsFormLabel,
@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch, getState) => {
       dispatch(thunkAddCredentials());
     },
     cancelCredentialsForm: () => {
-      dispatch(actionHideAddCredentialsForm());
+      dispatch(actionCancelAddCredentialsForm());
     },
     changeAddCredentialsFormAccessKey: (evt, data) => {
       dispatch(actionChangeAddCredentialsFormAccessKey(data.value));

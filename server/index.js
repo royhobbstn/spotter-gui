@@ -85,7 +85,10 @@ app.post('/Profile', async function(req, res) {
 
   // save profile file
   try {
-    await fs.writeFile('./server/data/launch_profiles.json', JSON.stringify(launch_profiles));
+    await fs.writeFile(
+      './server/data/launch_profiles.json',
+      JSON.stringify(launch_profiles, null, '\t')
+    );
   } catch (e) {
     logger.error('Error saving profiles');
     logger.error(e.message);
@@ -97,11 +100,104 @@ app.post('/Profile', async function(req, res) {
   return res.status(200).send({ message: 'ok' });
 });
 
+app.delete('/Credentials/:name', async function(req, res) {
+  const credential_name = req.params.name;
+  try {
+    const existing_credentials = await fs.readFile('./server/data/credentials.json', 'utf8');
+    const existing_credentials_array = JSON.parse(existing_credentials).credentials;
+
+    const updated_credentials = existing_credentials_array.filter(c => {
+      return c.credentialLabel !== credential_name;
+    });
+
+    const file_data = JSON.stringify({ credentials: updated_credentials }, null, '\t');
+    await fs.writeFile('./server/data/credentials.json', file_data, 'utf8');
+    return res.status(200).send({ message: 'ok' });
+  } catch (err) {
+    return res.status(500).send({ message: err.message, stack: err.stack });
+  }
+});
+
+app.put('/Credentials/:name', async function(req, res) {
+  const credential_name = req.params.name;
+  try {
+    const form_data = req.body;
+
+    const existing_credentials = await fs.readFile('./server/data/credentials.json', 'utf8');
+    const existing_credentials_array = JSON.parse(existing_credentials).credentials;
+
+    const clear_defaults = form_data.add_credentials_form_default_checked
+      ? existing_credentials_array.map(c => {
+          if (c.service === form_data.add_credentials_form_selected_provider) {
+            return Object.assign({}, c, { isDefault: false });
+          } else {
+            return c;
+          }
+        })
+      : existing_credentials_array;
+
+    const credential_object = {
+      credentialLabel: form_data.add_credentials_form_label,
+      service: form_data.add_credentials_form_selected_provider,
+      isDefault: form_data.add_credentials_form_default_checked,
+      details: {
+        accessKeyId: form_data.add_credentials_form_access_key,
+        secretAccessKey: form_data.add_credentials_form_secret_access_key
+      }
+    };
+
+    const updated_credentials = clear_defaults.map(c => {
+      if (c.credentialLabel === credential_name) {
+        return credential_object;
+      }
+      return c;
+    });
+
+    const file_data = JSON.stringify({ credentials: updated_credentials }, null, '\t');
+    await fs.writeFile('./server/data/credentials.json', file_data, 'utf8');
+    return res.status(200).send({ message: 'ok' });
+  } catch (err) {
+    return res.status(500).send({ message: err.message, stack: err.stack });
+  }
+});
+
 app.post('/Credentials', async function(req, res) {
-  // TODO
+  try {
+    const form_data = req.body;
+
+    const existing_credentials = await fs.readFile('./server/data/credentials.json', 'utf8');
+    const existing_credentials_array = JSON.parse(existing_credentials).credentials;
+
+    const clear_defaults = form_data.add_credentials_form_default_checked
+      ? existing_credentials_array.map(c => {
+          if (c.service === form_data.add_credentials_form_selected_provider) {
+            return Object.assign({}, c, { isDefault: false });
+          } else {
+            return c;
+          }
+        })
+      : existing_credentials_array;
+
+    const credential_object = {
+      credentialLabel: form_data.add_credentials_form_label,
+      service: form_data.add_credentials_form_selected_provider,
+      isDefault: form_data.add_credentials_form_default_checked,
+      details: {
+        accessKeyId: form_data.add_credentials_form_access_key,
+        secretAccessKey: form_data.add_credentials_form_secret_access_key
+      }
+    };
+
+    clear_defaults.push(credential_object);
+
+    const file_data = JSON.stringify({ credentials: clear_defaults }, null, '\t');
+    await fs.writeFile('./server/data/credentials.json', file_data, 'utf8');
+    return res.status(200).send({ message: 'ok' });
+  } catch (err) {
+    return res.status(500).send({ message: err.message, stack: err.stack });
+  }
 
   // return
-  return res.status(200).send({ message: 'ok' });
 });
 
 app.get('/loadInitialData', async function(req, res) {

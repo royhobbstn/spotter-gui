@@ -12,9 +12,9 @@ export function actionShowAddCredentialsForm() {
   };
 }
 
-export function actionHideAddCredentialsForm() {
+export function actionCancelAddCredentialsForm() {
   return {
-    type: 'HIDE_ADD_CREDENTIALS_FORM'
+    type: 'CANCEL_ADD_CREDENTIALS_FORM'
   };
 }
 
